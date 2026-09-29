@@ -1,0 +1,47 @@
+:root{
+    --main_bg_color: #F8F9FA;
+    --first_color: #495057;
+    --second_color: #E9ECEF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+    background-color: var(--main_bg_color);
+}
+
+.not_through{
+    margin-left: 5px;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+    font-family: "Noto Sans Thai";
+    font-size: 1.5rem;
+    background-color: var(--second_color);
+    height: 15vh;
+}
+
+.header h1{
+  font-weight: 700;
+}
+
+.line_color{
+    background-color: var(--first_color);
+    height: 0.5vh;
+    margin-bottom: 2vh;
+}
+
+.descrip{
+    font-family: "Sarabun";
+    font-size: 1.2rem;
+}
+
+.descrip p{
+    font-weight: 300;
+}
