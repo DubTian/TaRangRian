@@ -24,7 +24,6 @@ body{
     font-family: "Noto Sans Thai";
     font-size: 1.5rem;
     background-color: var(--second_color);
-    height: 15vh;
 }
 
 .header h1{
@@ -40,8 +39,18 @@ body{
 .descrip{
     font-family: "Sarabun";
     font-size: 1.2rem;
+    text-indent: 3em;
 }
 
 .descrip p{
     font-weight: 300;
+}
+
+@media (max-width: 768px){
+    .header{
+        font-size: 1.1rem;
+    }
+    .descrip{
+        font-size: 0.9rem;
+    }
 }
