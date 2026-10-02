@@ -4,7 +4,7 @@
     --second_color: #E9ECEF;
 }
 
-* {
+*{
   margin: 0;
   padding: 0;
 }
@@ -17,40 +17,50 @@ body{
     margin-left: 5px;
 }
 
-.header{
+header{
     display: flex;
     align-items: center;
-    justify-content: center;;
+    justify-content: center;
+    height: 4rem;
     font-family: "Noto Sans Thai";
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     background-color: var(--second_color);
 }
 
-.header h1{
-  font-weight: 700;
+header h1{
+    font-weight: 700;
 }
 
-.line_color{
+.main_line{
     background-color: var(--first_color);
-    height: 0.5vh;
+    height: 0.3vh;
     margin-bottom: 2vh;
 }
 
 .descrip{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: "Sarabun";
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     text-indent: 3em;
 }
 
 .descrip p{
     font-weight: 300;
+    width: 90%;
 }
 
-@media (max-width: 768px){
-    .header{
-        font-size: 1.1rem;
+@media(min-width: 769px){
+    header{
+        height: 6.5rem;
+        font-size: 1.5rem;
+    }
+    .main_line{
+        height: 0.5vh;
+        margin-bottom: 4.5vh;
     }
     .descrip{
-        font-size: 0.9rem;
+        font-size: 1.2rem;
     }
 }
