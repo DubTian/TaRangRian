@@ -1,40 +1,49 @@
-:root{
-    --main_bg_color: #F8F9FA;
-    --first_color: #495057;
-    --second_color: #E9ECEF;
-}
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+:root{
+    --main_bg_color: #F8F9FA;
+    --first_color: #495057;
+    --second_color: #E9ECEF;
+}
+
+html{
     background-color: var(--main_bg_color);
 }
 
 header{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 4rem;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 5vh;
     font-family: "Noto Sans Thai";
-    font-size: 1.1rem;
+}
+
+.header{
+    min-height: 4.7vh;
     background-color: var(--second_color);
 }
 
-header h1{
+.header a{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 2%;
+    font-size: 1.2rem;
     font-weight: 700;
-}
-
-.not_through{
-    margin-left: 5px;
+    color: black;
+    text-decoration: none;
 }
 
 .main_line{
     height: 0.3vh;
-    margin-bottom: 2vh;
+    margin-top: auto;
     background-color: var(--first_color);
 }
 
@@ -49,35 +58,41 @@ header h1{
     font-weight: 300;
 }
 
-.calender_block{
+.calendar_block{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.25em;
     font-family: "Sarabun";
-    font-size: 1rem;
     background-color: var(--second_color);
 }
 
 .day_name{
     z-index: 1;
-    font-weight: 400;
+    padding: 0.25em;
+    font-size: 1rem;
+    font-weight: 500;
     outline: 0.5vw solid var(--first_color);
 }
 
 .date{
-    font-weight: 300;
+    font-size: 1.2rem;
+    font-weight: 200;
     outline: 0.4vw solid var(--first_color);
 }
 
-#out_calender{
+#first_element{
+    margin-top: 7vh;
+}
+
+#out_calendar{
     display: flex;
     justify-content: center;
-    height: 30vh;
+    height: auto;
+    min-height: 30vh;
     margin: 0.75rem;
 }
 
-#calender{
+#calendar{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 0.8fr repeat(5, 2fr);
@@ -86,24 +101,66 @@ header h1{
 
 @media(min-width: 768px){
     header{
-        height: 6.5rem;
-        font-size: 1.5rem;
+        min-height: 7.5vh;
+    }
+    .header{
+        min-height: 7.1vh;
+    }
+    .header a{
+        font-size: 2rem;
     }
     .main_line{
-        height: 0.8vh;
-        margin-bottom: 4.5vh;
+        height: 0.4vh;
     }
     .descrip{
         font-size: 1.2rem;
     }
     .day_name{
-        outline: 0.2vw solid var(--first_color);
+        font-size: 1.2rem;
+        outline: 0.4vw solid var(--first_color);
     }
     .date{
+        font-size: 2rem;
+        outline: 0.3vw solid var(--first_color);
+    }
+    #first_element{
+        margin-top: 9vh;
+    }
+    #out_calendar{
+        min-height: 40vh;
+        margin: 1.2rem;
+    }
+}
+
+@media(min-width: 1024px){
+    header{
+        min-height: 10vh;
+    }
+    .header{
+        min-height: 9.5vh;
+    }
+    .header a{
+        font-size: 1.8rem;
+    }
+    .main_line{
+        height: 0.5vh;
+    }
+    .descrip{
+        font-size: 1.2rem;
+    }
+    .day_name{
+        font-size: 1.1rem;
+        outline: 0.25vw solid var(--first_color);
+    }
+    .date{
+        font-size: 1.7rem;
         outline: 0.2vw solid var(--first_color);
     }
-    #out_calender{
-        height: 40vh;
-        margin: 1.2rem;
+    #first_element{
+        margin-top: 12vh;
+    }
+    #out_calendar{
+        min-height: 40vh;
+        margin: 1.8vw 4vw;
     }
 }
