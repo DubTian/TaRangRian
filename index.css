@@ -58,6 +58,44 @@ header{
     font-weight: 300;
 }
 
+.set_calendar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 8vh;
+}
+
+.set{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+}
+
+.set h4{
+    font-family: "Sarabun";
+    font-weight: 400;
+}
+
+.set button{
+    height: 2.5rem;
+    aspect-ratio: 1/1;
+    font-family: "Sarabun";
+    font-size: 2rem;
+    font-weight: 200;
+    text-align: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: black;
+}
+
+.set button:active{
+    background-color: #E0E0E0;
+    border-radius: 50%;
+}
+
 .calendar_block{
     display: flex;
     justify-content: center;
@@ -86,10 +124,32 @@ header{
 
 #out_calendar{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     height: auto;
-    min-height: 30vh;
-    margin: 0.75rem;
+    min-height: 45vh;
+    margin: 0.2rem 0.75rem 1rem;
+}
+
+#year{
+    width: 70%;
+    opacity: 60%;
+}
+
+#year h4{
+    font-size: 1.3rem;
+}
+
+#year button{
+    height: 2rem;
+    font-size: 1.5rem;
+}
+
+#month{
+    margin-bottom: 0.8rem;
+}
+
+#month h4{
+    font-size: 1.65rem;
 }
 
 #calendar{
@@ -97,6 +157,7 @@ header{
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 0.8fr repeat(5, 2fr);
     width: 100%;
+    margin-top: auto;
 }
 
 @media(min-width: 768px){
@@ -115,6 +176,21 @@ header{
     .descrip{
         font-size: 1.2rem;
     }
+    .set_calendar{
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 5vh;
+        margin-bottom: 1.2rem;
+    }
+    .set h4{
+        font-weight: 500;
+    }
+    .set button{
+        width: auto;
+        height: 4rem;
+        font-size: 3rem;
+    }
     .day_name{
         font-size: 1.2rem;
         outline: 0.4vw solid var(--first_color);
@@ -127,12 +203,30 @@ header{
         margin-top: 9vh;
     }
     #out_calendar{
-        min-height: 40vh;
-        margin: 1.2rem;
+        min-height: 0;
+        margin: 0.2rem 1.2rem 1rem;
+    }
+    #year{
+        width: 35%;
+        opacity: 100%;
+    }
+    #year h4{
+        font-size: 2rem;
+    }
+    #year button{
+        height: 4rem;
+        font-size: 3rem;
+    }
+    #month{
+        width: 60%;
+        margin-bottom: 0;
+    }
+    #month h4{
+        font-size: 2.2rem;
     }
 }
 
-@media(min-width: 1024px){
+@media(min-width: 1280px){
     header{
         min-height: 10vh;
     }
@@ -148,6 +242,9 @@ header{
     .descrip{
         font-size: 1.2rem;
     }
+    .set_calendar{
+        min-height: 10vh;
+    }
     .day_name{
         font-size: 1.1rem;
         outline: 0.25vw solid var(--first_color);
@@ -160,7 +257,6 @@ header{
         margin-top: 12vh;
     }
     #out_calendar{
-        min-height: 40vh;
-        margin: 1.8vw 4vw;
+        margin: 0vw 4vw 1.7vw;
     }
 }
