@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wdth,wght@62.5..100,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
@@ -13,22 +14,22 @@
         <div class="header">
             <a href="./">ตารางเรียนออนไลน์ 4.3</a>
         </div>
-        <div class="main_line"></div>
+        <div class="header_line"></div>
     </header>
     <main>
         <div class="descrip" id="first_element">
             <p>เลือกวันที่เพื่อดูตารางเรียน</p>
         </div>
-        <div id="out_calendar">
+        <section id="out_calendar">
             <div class="set_calendar">
                 <div class="set" id="year">
                     <button id="year_back"><</button>
-                    <h4>X</h4>
+                    <h4>XXXX</h4>
                     <button id="year_go">></button>
                 </div>
                 <div class="set" id="month">
                     <button id="month_back"><</button>
-                    <h4>X</h4>
+                    <h4>XXXXXXX</h4>
                     <button id="month_go">></button>
                 </div>
             </div>
@@ -41,52 +42,95 @@
                 <div class="calendar_block day_name">ศ.</div>
                 <div class="calendar_block day_name">ส.</div>
 
-                <div class="calendar_block date" id="1-2">X</div>
-                <div class="calendar_block date" id="1-1">X</div>
-                <div class="calendar_block date" id="1-3">X</div>
-                <div class="calendar_block date" id="1-4">X</div>
-                <div class="calendar_block date" id="1-5">X</div>
-                <div class="calendar_block date" id="1-6">X</div>
-                <div class="calendar_block date" id="1-7">X</div>
+                <div class="calendar_block date block_day" id="calendar_1-1">X</div>
+                <div class="calendar_block date" id="calendar_1-2">X</div>
+                <div class="calendar_block date" id="calendar_1-3">X</div>
+                <div class="calendar_block date" id="calendar_1-4">X</div>
+                <div class="calendar_block date" id="calendar_1-5">X</div>
+                <div class="calendar_block date" id="calendar_1-6">X</div>
+                <div class="calendar_block date block_day" id="calendar_1-7">X</div>
 
-                <div class="calendar_block date" id="2-1">X</div>
-                <div class="calendar_block date" id="2-2">X</div>
-                <div class="calendar_block date" id="2-3">X</div>
-                <div class="calendar_block date" id="2-4">X</div>
-                <div class="calendar_block date" id="2-5">X</div>
-                <div class="calendar_block date" id="2-6">X</div>
-                <div class="calendar_block date" id="2-7">X</div>
+                <div class="calendar_block date block_day" id="calendar_2-1">X</div>
+                <div class="calendar_block date" id="calendar_2-2">X</div>
+                <div class="calendar_block date" id="calendar_2-3">X</div>
+                <div class="calendar_block date" id="calendar_2-4">X</div>
+                <div class="calendar_block date" id="calendar_2-5">X</div>
+                <div class="calendar_block date" id="calendar_2-6">X</div>
+                <div class="calendar_block date block_day" id="calendar_2-7">X</div>
 
-                <div class="calendar_block date" id="3-1">X</div>
-                <div class="calendar_block date" id="3-2">X</div>
-                <div class="calendar_block date" id="3-3">X</div>
-                <div class="calendar_block date" id="3-4">X</div>
-                <div class="calendar_block date" id="3-5">X</div>
-                <div class="calendar_block date" id="3-6">X</div>
-                <div class="calendar_block date" id="3-7">X</div>
+                <div class="calendar_block date block_day" id="calendar_3-1">X</div>
+                <div class="calendar_block date" id="calendar_3-2">X</div>
+                <div class="calendar_block date" id="calendar_3-3">X</div>
+                <div class="calendar_block date" id="calendar_3-4">X</div>
+                <div class="calendar_block date" id="calendar_3-5">X</div>
+                <div class="calendar_block date" id="calendar_3-6">X</div>
+                <div class="calendar_block date block_day" id="calendar_3-7">X</div>
 
-                <div class="calendar_block date" id="4-1">X</div>
-                <div class="calendar_block date" id="4-2">X</div>
-                <div class="calendar_block date" id="4-3">X</div>
-                <div class="calendar_block date" id="4-4">X</div>
-                <div class="calendar_block date" id="4-5">X</div>
-                <div class="calendar_block date" id="4-6">X</div>
-                <div class="calendar_block date" id="4-7">X</div>
+                <div class="calendar_block date block_day" id="calendar_4-1">X</div>
+                <div class="calendar_block date" id="calendar_4-2">X</div>
+                <div class="calendar_block date" id="calendar_4-3">X</div>
+                <div class="calendar_block date" id="calendar_4-4">X</div>
+                <div class="calendar_block date" id="calendar_4-5">X</div>
+                <div class="calendar_block date" id="calendar_4-6">X</div>
+                <div class="calendar_block date block_day" id="calendar_4-7">X</div>
 
-                <div class="calendar_block date" id="5-1">X</div>
-                <div class="calendar_block date" id="5-2">X</div>
-                <div class="calendar_block date" id="5-3">X</div>
-                <div class="calendar_block date" id="5-4">X</div>
-                <div class="calendar_block date" id="5-5">X</div>
-                <div class="calendar_block date" id="5-6">X</div>
-                <div class="calendar_block date" id="5-7">X</div>
+                <div class="calendar_block date block_day" id="calendar_5-1">X</div>
+                <div class="calendar_block date" id="calendar_5-2">X</div>
+                <div class="calendar_block date" id="calendar_5-3">X</div>
+                <div class="calendar_block date" id="calendar_5-4">X</div>
+                <div class="calendar_block date" id="calendar_5-5">X</div>
+                <div class="calendar_block date" id="calendar_5-6">X</div>
+                <div class="calendar_block date block_day" id="calendar_5-7">X</div>
             </div>
-        </div>
-        <div id="cell">
-            <div class="descrip">
-                <p>ตารางเรียน</p>
+        </section>
+        <section id="cell">
+            <div id="cell_header">
+                <h4>ตารางเรียน</h4>
             </div>
-        </div>
+            <div id="class_cell">
+                <div class="cell_block cell_time">ชั่วโมงที่</div>
+                <div class="cell_block cell_hour">1</div>
+                <div class="cell_block cell_hour">2</div>
+                <div class="cell_block cell_hour">3</div>
+                <div class="cell_block cell_hour">4</div>
+                <div class="cell_block cell_hour">5</div>
+                <div class="cell_block cell_hour">6</div>
+                <div class="cell_block cell_hour">7</div>
+                <div class="cell_block cell_hour">8</div>
+                <div class="cell_block cell_hour">9</div>
+                <div class="cell_block cell_hour">10</div>
+                <div class="cell_block cell_hour">11</div>
+                <div class="cell_block cell_hour">12</div>
+                
+                <div class="cell_block cell_time">เวลา</div>
+                <div class="cell_block cell_time" id="celltime_1">08.10-08.30</div>
+                <div class="cell_block cell_time" id="celltime_2">08.30-09.20</div>
+                <div class="cell_block cell_time" id="celltime_3">09.20-10.10</div>
+                <div class="cell_block cell_time" id="celltime_4">10.10-11.00</div>
+                <div class="cell_block cell_time" id="celltime_5">11.00-11.50</div>
+                <div class="cell_block cell_time" id="celltime_6">11.50-12.40</div>
+                <div class="cell_block cell_time" id="celltime_7">12.40-13.30</div>
+                <div class="cell_block cell_time" id="celltime_8">13.30-14.20</div>
+                <div class="cell_block cell_time" id="celltime_9">14.20-15.10</div>
+                <div class="cell_block cell_time" id="celltime_10">15.10-16.00</div>
+                <div class="cell_block cell_time" id="celltime_11">16.00-16.50</div>
+                <div class="cell_block cell_time" id="celltime_12">16.50-17.40</div>
+
+                <div class="cell_block" id="day">X</div>
+                <div class="cell_block" id="class_1">XXX<br>XXX<br>XX</div>
+                <div class="cell_block" id="class_2">XXX<br>XXX<br>XX</div>
+                <div class="cell_block" id="class_3">XXX<br>XXX<br>XX</div>
+                <div class="cell_block" id="class_4">XXX<br>XXX<br>XX</div>
+                <div class="cell_block" id="class_5">XXX<br>XXX<br>XX</div>
+                <div class="cell_block" id="class_6">พัก</div>
+                <div class="cell_block" id="class_7">XXX<br>XXX<br>XX</div>
+                <div class="cell_block" id="class_8">XXX<br>XXX<br>XX</div>
+                <div class="cell_block" id="class_9">XXX<br>XXX<br>XX</div>
+                <div class="cell_block" id="class_10">XXX<br>XXX<br>XX</div>
+                <div class="cell_block" id="class_11">XXX<br>XXX<br>XX</div>
+                <div class="cell_block" id="class_12">XXX<br>XXX<br>XX</div>
+            </div>
+        </section>
     </main>
 </body>
 </html>

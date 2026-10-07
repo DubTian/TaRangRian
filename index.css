@@ -8,6 +8,11 @@
     --main_bg_color: #F8F9FA;
     --first_color: #495057;
     --second_color: #E9ECEF;
+    --text_color: #000000;
+    --soft_first: #CFD2D4;
+    --hover_second: #ffffff;
+    --heavy_second: #DEE2E3;
+    --button_active: #D4D4D4;
 }
 
 html{
@@ -15,12 +20,14 @@ html{
 }
 
 header{
+    z-index: 2;
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    height: auto;
     min-height: 5vh;
     font-family: "Noto Sans Thai";
 }
@@ -37,11 +44,11 @@ header{
     margin-left: 2%;
     font-size: 1.2rem;
     font-weight: 700;
-    color: black;
+    color: var(--text_color);
     text-decoration: none;
 }
 
-.main_line{
+.header_line{
     height: 0.3vh;
     margin-top: auto;
     background-color: var(--first_color);
@@ -69,31 +76,34 @@ header{
 .set{
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     width: 100%;
 }
 
 .set h4{
     font-family: "Sarabun";
     font-weight: 400;
+    cursor: pointer;
 }
 
 .set button{
     height: 2.5rem;
     aspect-ratio: 1/1;
-    font-family: "Sarabun";
+    font-family: "Noto Sans Thai";
     font-size: 2rem;
-    font-weight: 200;
+    font-weight: 400;
     text-align: center;
     background: transparent;
     border: none;
+    -webkit-tap-highlight-color: transparent;
     cursor: pointer;
-    color: black;
+    color: var(--text_color);
 }
 
 .set button:active{
-    background-color: #E0E0E0;
+    background-color: var(--button_active);
     border-radius: 50%;
+    transform: scale(0.9);
 }
 
 .calendar_block{
@@ -101,6 +111,7 @@ header{
     justify-content: center;
     align-items: center;
     font-family: "Sarabun";
+    outline: 0.4vw solid var(--first_color);
     background-color: var(--second_color);
 }
 
@@ -109,24 +120,68 @@ header{
     padding: 0.25em;
     font-size: 1rem;
     font-weight: 500;
-    outline: 0.5vw solid var(--first_color);
+    background-color: var(--soft_first);
 }
 
 .date{
     font-size: 1.2rem;
     font-weight: 200;
-    outline: 0.4vw solid var(--first_color);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+.date:hover{
+    font-size: 1.3rem;
+    font-weight: 300;
+    background-color: var(--hover_second);
+}
+
+.date:active{
+    font-size: 1rem;
+    font-weight: 300;
+    background-color: var(--button_active);
+}
+
+.block_day{
+    background-color: var(--heavy_second);
+}
+
+.block_day:hover{
+    font-size: 1.2rem;
+    font-weight: 200;
+    background-color: var(--heavy_second);
+    cursor: default;
+}
+
+.cell_block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.7em 0.2em;
+    text-align: center;
+    outline: 0.1rem solid var(--first_color);
+    background-color: var(--second_color);
+}
+
+.cell_hour{
+    font-size: 0.35rem;
+    padding: 0;
+}
+
+.cell_time{
+    font-size: 0.25rem;
 }
 
 #first_element{
-    margin-top: 7vh;
+    margin-top: 6.5vh;
 }
 
 #out_calendar{
     display: flex;
     flex-direction: column;
     height: auto;
-    min-height: 45vh;
+    min-height: 43vh;
     margin: 0.2rem 0.75rem 1rem;
 }
 
@@ -160,6 +215,31 @@ header{
     margin-top: auto;
 }
 
+#cell{
+    margin: 0 0.75rem;
+    font-family: "Sarabun";
+    font-size: 0.32rem;
+    font-weight: 400;
+}
+
+#cell_header{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.7rem;
+}
+
+#cell_header h4{
+    font-size: 1.2rem;
+    font-weight: 450;
+}
+
+#class_cell{
+    display: grid;
+    grid-template-columns: 2.5fr repeat(12, 3.5fr);
+    grid-template-rows: repeat(2, 0.5fr) 1.5fr;
+    width: 100%;
+}
+
 @media(min-width: 768px){
     header{
         min-height: 7.5vh;
@@ -170,7 +250,7 @@ header{
     .header a{
         font-size: 2rem;
     }
-    .main_line{
+    .header_line{
         height: 0.4vh;
     }
     .descrip{
@@ -190,14 +270,31 @@ header{
         width: auto;
         height: 4rem;
         font-size: 3rem;
+        font-weight: 300;
+    }
+    .calendar_block{
+        outline: 0.3vw solid var(--first_color);
     }
     .day_name{
         font-size: 1.2rem;
-        outline: 0.4vw solid var(--first_color);
     }
     .date{
         font-size: 2rem;
-        outline: 0.3vw solid var(--first_color);
+    }
+    .date:hover{
+        font-size: 2.3rem
+    }
+    .date:active{
+        font-size: 1.8rem;
+    }
+    .block_day:hover{
+        font-size: 2rem;
+    }
+    .cell_hour{
+        font-size: 0.7rem;
+    }
+    .cell_time{
+        font-size: 0.5rem;
     }
     #first_element{
         margin-top: 9vh;
@@ -224,6 +321,43 @@ header{
     #month h4{
         font-size: 2.2rem;
     }
+    #cell{
+        margin: 2rem 1.2rem;
+        padding: 0.2rem 0.1rem;
+        font-size: 0.6rem;
+    }
+    #cell_header{
+        margin-bottom: 1rem;
+    }
+    #cell_header h4{
+        font-size: 1.5rem;
+    }
+    #class_cell{
+        grid-template-columns: 2.5fr repeat(12, 3.5fr);
+        grid-template-rows: repeat(2, 1.5fr) 4fr    ;
+    }
+}
+
+@media(min-width: 1024px){
+    .header a{
+        font-size: 2.5rem;
+    }
+    .calendar_block{
+        outline: 0.25vw solid var(--first_color);
+    }
+    .cell_hour{
+        font-size: 1rem;
+    }
+    .cell_time{
+        font-size: 0.75rem;
+    }
+    #out_calendar{
+        margin: 0.1rem 1.5rem 1rem;
+    }
+    #cell{
+        margin: 0.1rem 1.5rem;
+        font-size: 0.85rem;
+    }
 }
 
 @media(min-width: 1280px){
@@ -234,9 +368,9 @@ header{
         min-height: 9.5vh;
     }
     .header a{
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
-    .main_line{
+    .header_line{
         height: 0.5vh;
     }
     .descrip{
@@ -245,18 +379,42 @@ header{
     .set_calendar{
         min-height: 10vh;
     }
+    .calendar_block{
+        outline: 0.2vw solid var(--first_color);
+    }
     .day_name{
         font-size: 1.1rem;
-        outline: 0.25vw solid var(--first_color);
     }
     .date{
         font-size: 1.7rem;
-        outline: 0.2vw solid var(--first_color);
+    }
+    .date:hover{
+        font-size: 2.2rem
+    }
+    .date:active{
+        font-size: 1.5rem;
+    }
+    .block_day:hover{
+        font-size: 1.7rem;
+    }
+    .cell_hour{
+        font-size: 1.3rem;
+    }
+    .cell_time{
+        font-size: 1rem;
     }
     #first_element{
         margin-top: 12vh;
     }
     #out_calendar{
-        margin: 0vw 4vw 1.7vw;
+        margin: 0 4rem 2rem;
+    }
+    #cell{
+        margin: 0 4rem 3rem;
+        font-size: 1rem;
+    }
+    #class_cell{
+        grid-template-columns: 2.5fr repeat(12, 3.5fr);
+        grid-template-rows: repeat(2, 1.2fr) 2.5fr;
     }
 }
