@@ -23,7 +23,8 @@ header{
     z-index: 2;
     display: flex;
     flex-direction: column;
-    position: fixed;
+    justify-content: center;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -33,15 +34,15 @@ header{
 }
 
 .header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     min-height: 4.7vh;
+    padding: 1% 2%;
     background-color: var(--second_color);
 }
 
 .header a{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 2%;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--text_color);
@@ -50,7 +51,6 @@ header{
 
 .header_line{
     height: 0.3vh;
-    margin-top: auto;
     background-color: var(--first_color);
 }
 
@@ -131,15 +131,21 @@ header{
 }
 
 .date:hover{
+    z-index: 1;
+    transform: translateX(-4%) translateY(-5%);
+    width: 107%;
+    height: 110%;
     font-size: 1.3rem;
     font-weight: 300;
     background-color: var(--hover_second);
+    box-shadow: 0 0 1.5rem 0.5rem var(--hover_second);
 }
 
 .date:active{
+    z-index: auto;
     font-size: 1rem;
-    font-weight: 300;
     background-color: var(--button_active);
+    box-shadow:  none;
 }
 
 .block_day{
@@ -147,9 +153,14 @@ header{
 }
 
 .block_day:hover{
+    z-index: auto;
+    transform: none;
+    width: 100%;
+    height: 100%;
     font-size: 1.2rem;
     font-weight: 200;
     background-color: var(--heavy_second);
+    box-shadow: none;
     cursor: default;
 }
 
@@ -174,7 +185,7 @@ header{
 }
 
 #first_element{
-    margin-top: 6.5vh;
+    margin-top: 0.8rem;
 }
 
 #out_calendar{
@@ -246,6 +257,7 @@ header{
     }
     .header{
         min-height: 7.1vh;
+        padding: 2%;
     }
     .header a{
         font-size: 2rem;
@@ -297,7 +309,7 @@ header{
         font-size: 0.5rem;
     }
     #first_element{
-        margin-top: 9vh;
+        margin-top: 0.8rem;
     }
     #out_calendar{
         min-height: 0;
@@ -334,11 +346,14 @@ header{
     }
     #class_cell{
         grid-template-columns: 2.5fr repeat(12, 3.5fr);
-        grid-template-rows: repeat(2, 1.5fr) 4fr    ;
+        grid-template-rows: repeat(2, 1.5fr) 4fr;
     }
 }
 
 @media(min-width: 1024px){
+    .header{
+        padding: 1% 2%;
+    }
     .header a{
         font-size: 2.5rem;
     }
@@ -351,21 +366,29 @@ header{
     .cell_time{
         font-size: 0.75rem;
     }
+    #first_element{
+        margin-top: 1.5rem;
+    }
     #out_calendar{
         margin: 0.1rem 1.5rem 1rem;
     }
     #cell{
-        margin: 0.1rem 1.5rem;
+        margin: 0.1rem 1.5rem 2rem;
         font-size: 0.85rem;
+    }
+    #class_cell{
+        grid-template-columns: 2.5fr repeat(12, 3.5fr);
+        grid-template-rows: repeat(2, 1fr) 2fr;
     }
 }
 
 @media(min-width: 1280px){
     header{
-        min-height: 10vh;
+        min-height: 0vh;
     }
     .header{
-        min-height: 9.5vh;
+        min-height: 7vh;
+        padding: 0.5% 2%;
     }
     .header a{
         font-size: 2rem;
@@ -404,7 +427,7 @@ header{
         font-size: 1rem;
     }
     #first_element{
-        margin-top: 12vh;
+        margin-top: 1rem;
     }
     #out_calendar{
         margin: 0 4rem 2rem;
