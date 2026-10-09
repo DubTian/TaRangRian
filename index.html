@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wdth,wght@62.5..100,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <title>ตารางเรียนออนไลน์ 4.3</title>
     <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
 </head>
 <body>
     <header>
@@ -25,12 +26,12 @@
             <div class="set-calendar">
                 <div class="set" id="year">
                     <button id="yearBack"><</button>
-                    <h4>XXXX</h4>
+                    <h4 id="yearValue">XXXX</h4>
                     <button id="yearGo">></button>
                 </div>
                 <div class="set" id="month">
                     <button id="monthBack"><</button>
-                    <h4>XXXXXXX</h4>
+                    <h4 id="monthValue">XXXXXXX</h4>
                     <button id="monthGo">></button>
                 </div>
             </div>
@@ -43,7 +44,7 @@
                 <div class="calendar-block day-name">ศ.</div>
                 <div class="calendar-block day-name">ส.</div>
 
-                <div class="calendar-block date block-day" id="calenda1-1">X</div>
+                <div class="calendar-block date block-day" id="calendar1-1">X</div>
                 <div class="calendar-block date" id="calendar1-2">X</div>
                 <div class="calendar-block date" id="calendar1-3">X</div>
                 <div class="calendar-block date" id="calendar1-4">X</div>

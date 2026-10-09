@@ -70,8 +70,9 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 85%;
     min-height: 8vh;
+    margin: 0 auto;
 }
 
 .set{
@@ -99,7 +100,6 @@ header{
     color: var(--text_color);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    user-select: none;
 }
 
 .set button:active{
@@ -130,7 +130,6 @@ header{
     font-weight: 200;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
-    user-select: none;
 }
 
 .date:hover{
@@ -200,6 +199,7 @@ header{
     height: auto;
     min-height: 43vh;
     margin: 0.2rem 0.75rem 1rem;
+    user-select: none;
 }
 
 #year{
@@ -208,7 +208,7 @@ header{
 }
 
 #year h4{
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 #year button{
@@ -221,7 +221,7 @@ header{
 }
 
 #month h4{
-    font-size: 1.65rem;
+    font-size: 1.7rem;
 }
 
 #calendar{
@@ -240,6 +240,7 @@ header{
 }
 
 #cell{
+    display: none;
     margin: 0 0.75rem;
     font-family: "Sarabun";
     font-size: 0.32rem;
@@ -285,8 +286,9 @@ header{
         flex-direction: row-reverse;
         justify-content: space-between;
         align-items: center;
+        width: 98%;
         min-height: 5vh;
-        margin-bottom: 1.2rem;
+        margin: 0 auto 1.2rem;
     }
     .set h4{
         font-weight: 500;
@@ -333,7 +335,7 @@ header{
         opacity: 100%;
     }
     #year h4{
-        font-size: 2rem;
+        font-size: 2.6rem;
     }
     #year button{
         height: 4rem;
@@ -344,7 +346,7 @@ header{
         margin-bottom: 0;
     }
     #month h4{
-        font-size: 2.2rem;
+        font-size: 2.6rem;
     }
     #cellLine{
         width: 97%;
@@ -389,6 +391,12 @@ header{
     #out_Calendar{
         margin: 0.1rem 1.5rem 1rem;
     }
+    #year h4{
+        font-size: 2.9rem;
+    }
+    #month h4{
+        font-size: 2.9rem;
+    }
     #cellLine{
         width: 97.5%;
         height: 0.15vh;
@@ -425,6 +433,7 @@ header{
         font-size: 1.2rem;
     }
     .set-calendar{
+        width: 90%;
         min-height: 10vh;
     }
     .calendar-block{
@@ -453,6 +462,12 @@ header{
     }
     #firstElement{
         margin-top: 1rem;
+    }
+    #year h4{
+        font-size: 2.6rem;
+    }
+    #month h4{
+        font-size: 2.6rem;
     }
     #outCalendar{
         margin: 0 4rem 2rem;
