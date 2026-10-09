@@ -35,37 +35,38 @@ header{
 
 .header{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
     min-height: 4.7vh;
-    padding: 1% 2%;
+    padding: 2% 2%;
     background-color: var(--second_color);
 }
 
 .header a{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--text_color);
     text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
-.header_line{
+.header-line{
     height: 0.3vh;
     background-color: var(--first_color);
 }
 
 .descrip{
-    display: flex;
-    justify-content: center;
+    margin: 0 auto;
     font-family: "Sarabun";
     font-size: 1rem;
+    text-align: center;
 }
 
 .descrip p{
     font-weight: 300;
 }
 
-.set_calendar{
+.set-calendar{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,9 +96,10 @@ header{
     text-align: center;
     background: transparent;
     border: none;
-    -webkit-tap-highlight-color: transparent;
-    cursor: pointer;
     color: var(--text_color);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 .set button:active{
@@ -106,7 +108,7 @@ header{
     transform: scale(0.9);
 }
 
-.calendar_block{
+.calendar-block{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,7 +117,7 @@ header{
     background-color: var(--second_color);
 }
 
-.day_name{
+.day-name{
     z-index: 1;
     padding: 0.25em;
     font-size: 1rem;
@@ -128,6 +130,7 @@ header{
     font-weight: 200;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
+    user-select: none;
 }
 
 .date:hover{
@@ -143,16 +146,19 @@ header{
 
 .date:active{
     z-index: auto;
+    transform: none;
+    width: 100%;
+    height: 100%;
     font-size: 1rem;
     background-color: var(--button_active);
     box-shadow:  none;
 }
 
-.block_day{
+.block-day{
     background-color: var(--heavy_second);
 }
 
-.block_day:hover{
+.block-day:hover{
     z-index: auto;
     transform: none;
     width: 100%;
@@ -164,7 +170,7 @@ header{
     cursor: default;
 }
 
-.cell_block{
+.cell-block{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -175,20 +181,20 @@ header{
     background-color: var(--second_color);
 }
 
-.cell_hour{
+.cell-hour{
     font-size: 0.35rem;
     padding: 0;
 }
 
-.cell_time{
+.cell-time{
     font-size: 0.25rem;
 }
 
-#first_element{
+#firstElement{
     margin-top: 0.8rem;
 }
 
-#out_calendar{
+#outCalendar{
     display: flex;
     flex-direction: column;
     height: auto;
@@ -226,6 +232,13 @@ header{
     margin-top: auto;
 }
 
+#cellLine{
+    width: 96%;
+    height: 0.1vh;
+    margin: 1.5rem auto;
+    background-color: var(--first_color);
+}
+
 #cell{
     margin: 0 0.75rem;
     font-family: "Sarabun";
@@ -233,18 +246,18 @@ header{
     font-weight: 400;
 }
 
-#cell_header{
+#cellHeader{
     display: flex;
     justify-content: center;
     margin-bottom: 0.7rem;
 }
 
-#cell_header h4{
+#cellHeader h4{
     font-size: 1.2rem;
     font-weight: 450;
 }
 
-#class_cell{
+#classCell{
     display: grid;
     grid-template-columns: 2.5fr repeat(12, 3.5fr);
     grid-template-rows: repeat(2, 0.5fr) 1.5fr;
@@ -262,13 +275,13 @@ header{
     .header a{
         font-size: 2rem;
     }
-    .header_line{
+    .header-line{
         height: 0.4vh;
     }
     .descrip{
         font-size: 1.2rem;
     }
-    .set_calendar{
+    .set-calendar{
         flex-direction: row-reverse;
         justify-content: space-between;
         align-items: center;
@@ -284,10 +297,10 @@ header{
         font-size: 3rem;
         font-weight: 300;
     }
-    .calendar_block{
+    .calendar-block{
         outline: 0.3vw solid var(--first_color);
     }
-    .day_name{
+    .day-name{
         font-size: 1.2rem;
     }
     .date{
@@ -299,19 +312,19 @@ header{
     .date:active{
         font-size: 1.8rem;
     }
-    .block_day:hover{
+    .block-day:hover{
         font-size: 2rem;
     }
-    .cell_hour{
+    .cell-hour{
         font-size: 0.7rem;
     }
-    .cell_time{
+    .cell-time{
         font-size: 0.5rem;
     }
-    #first_element{
+    #firstElement{
         margin-top: 0.8rem;
     }
-    #out_calendar{
+    #outCalendar{
         min-height: 0;
         margin: 0.2rem 1.2rem 1rem;
     }
@@ -333,18 +346,22 @@ header{
     #month h4{
         font-size: 2.2rem;
     }
+    #cellLine{
+        width: 97%;
+        margin: 2.5rem auto;
+    }
     #cell{
         margin: 2rem 1.2rem;
         padding: 0.2rem 0.1rem;
         font-size: 0.6rem;
     }
-    #cell_header{
-        margin-bottom: 1rem;
+    #cellHeader{
+        margin-bottom: 1.5rem;
     }
-    #cell_header h4{
+    #cellHeader h4{
         font-size: 1.5rem;
     }
-    #class_cell{
+    #classCell{
         grid-template-columns: 2.5fr repeat(12, 3.5fr);
         grid-template-rows: repeat(2, 1.5fr) 4fr;
     }
@@ -357,26 +374,34 @@ header{
     .header a{
         font-size: 2.5rem;
     }
-    .calendar_block{
+    .calendar-block{
         outline: 0.25vw solid var(--first_color);
     }
-    .cell_hour{
+    .cell-hour{
         font-size: 1rem;
     }
-    .cell_time{
+    .cell-time{
         font-size: 0.75rem;
     }
-    #first_element{
+    #first_Element{
         margin-top: 1.5rem;
     }
-    #out_calendar{
+    #out_Calendar{
         margin: 0.1rem 1.5rem 1rem;
+    }
+    #cellLine{
+        width: 97.5%;
+        height: 0.15vh;
+        margin: 3.4rem auto;
     }
     #cell{
         margin: 0.1rem 1.5rem 2rem;
         font-size: 0.85rem;
     }
-    #class_cell{
+    #cellHeader{
+        margin-bottom: 2rem;
+    }
+    #classCell{
         grid-template-columns: 2.5fr repeat(12, 3.5fr);
         grid-template-rows: repeat(2, 1fr) 2fr;
     }
@@ -393,19 +418,19 @@ header{
     .header a{
         font-size: 2rem;
     }
-    .header_line{
+    .header-line{
         height: 0.5vh;
     }
     .descrip{
         font-size: 1.2rem;
     }
-    .set_calendar{
+    .set-calendar{
         min-height: 10vh;
     }
-    .calendar_block{
+    .calendar-block{
         outline: 0.2vw solid var(--first_color);
     }
-    .day_name{
+    .day-name{
         font-size: 1.1rem;
     }
     .date{
@@ -417,26 +442,34 @@ header{
     .date:active{
         font-size: 1.5rem;
     }
-    .block_day:hover{
+    .block-day:hover{
         font-size: 1.7rem;
     }
-    .cell_hour{
+    .cell-hour{
         font-size: 1.3rem;
     }
-    .cell_time{
+    .cell-time{
         font-size: 1rem;
     }
-    #first_element{
+    #firstElement{
         margin-top: 1rem;
     }
-    #out_calendar{
+    #outCalendar{
         margin: 0 4rem 2rem;
+    }
+    #cellLine{
+        width: 94%;
+        height: 0.3vh;
+        margin: 4rem auto;
     }
     #cell{
         margin: 0 4rem 3rem;
         font-size: 1rem;
     }
-    #class_cell{
+    #cellHeader{
+        margin-bottom: 3rem;
+    }
+    #classCell{
         grid-template-columns: 2.5fr repeat(12, 3.5fr);
         grid-template-rows: repeat(2, 1.2fr) 2.5fr;
     }
