@@ -7,8 +7,9 @@ const yearGo = document.getElementById("yearGo");
 const monthBack = document.getElementById("monthBack");
 const monthGo = document.getElementById("monthGo");
 
-yearCount = 2569
-year.textContent = yearCount
+let now = new Date();
+let yearCount = now.getFullYear()+543;
+year.textContent = yearCount;
 
 let monthNames = [
     "มกราคม",
@@ -24,7 +25,7 @@ let monthNames = [
     "พฤศจิกายน",
     "ธันวาคม"
 ];
-let monthCount = 4;
+let monthCount = now.getMonth();
 month.textContent = monthNames[monthCount];
 
 dateBlocks.forEach(function(dateBlock) {
@@ -43,7 +44,7 @@ yearBack.addEventListener("click", function() {
     year.textContent = yearCount;
 });
 yearGo.addEventListener("click", function() {
-    if(yearCount==2570) {
+    if(yearCount==now.getFullYear()+544) {
         yearCount = 2490;
         console.log("yes")
     } else {
