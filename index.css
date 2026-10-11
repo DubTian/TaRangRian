@@ -12,6 +12,7 @@
     --soft_first: #CFD2D4;
     --hover_second: #ffffff;
     --heavy_second: #DEE2E3;
+    --haevy_heavy_second: #D2D5D6;
     --button_active: #D4D4D4;
 }
 
@@ -169,6 +170,23 @@ header{
     cursor: default;
 }
 
+.out-month{
+    color: var(--first_color);
+    background-color: var(--haevy_heavy_second);
+}
+
+.out-month:hover{
+    z-index: auto;
+    transform: none;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem;
+    font-weight: 200;
+    background-color: var(--haevy_heavy_second);
+    box-shadow: none;
+    cursor: default;
+}
+
 .cell-block{
     display: flex;
     flex-direction: column;
@@ -227,7 +245,7 @@ header{
 #calendar{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: 0.8fr repeat(5, 2fr);
+    grid-template-rows: 0.8fr repeat(6, 2fr);
     width: 100%;
     margin-top: auto;
 }
@@ -315,6 +333,9 @@ header{
         font-size: 1.8rem;
     }
     .block-day:hover{
+        font-size: 2rem;
+    }
+    .out-month:hover{
         font-size: 2rem;
     }
     .cell-hour{
@@ -444,15 +465,21 @@ header{
     }
     .date{
         font-size: 1.7rem;
+        font-weight: 300;
     }
     .date:hover{
-        font-size: 2.2rem
+        font-size: 2.2rem;
     }
     .date:active{
         font-size: 1.5rem;
     }
     .block-day:hover{
         font-size: 1.7rem;
+        font-weight: 300;
+    }
+    .out-month:hover{
+        font-size: 1.7rem;
+        font-weight: 300;
     }
     .cell-hour{
         font-size: 1.3rem;
