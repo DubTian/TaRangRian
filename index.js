@@ -60,8 +60,8 @@ const date = [
 ];
 
 const calendarCal = (yearCount, monthCount) => {
-    let first = `${monthCount+1}-${1}-${yearCount-543}`;
-    let last = `${monthCount+1}-${lastDate(monthCount, yearCount-543)}-${yearCount-543}`;
+    let first = `${yearCount-543}-${1}-${monthCount+1}`;
+    let last = `${yearCount-543}-${lastDate(monthCount, yearCount-543)}-${monthCount+1}`;
     let firstDay = new Date(first).getDay();
     let lastDay = new Date(last).getDay();
     let weekends = [0, 6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41];
@@ -116,7 +116,7 @@ const calendarCal = (yearCount, monthCount) => {
 
     for(let weekend in weekends) {
         date[weekends[weekend]].classList.add("block-day");
-    }
+    };
 };
 
 const lastDate = (mv, yv) => {
@@ -133,7 +133,7 @@ const lastDate = (mv, yv) => {
         } else {
             return(28)
         };
-    }
+    };
 };
 
 let yearCount = new Date().getFullYear()+543;
@@ -186,7 +186,7 @@ monthBack.addEventListener("click", () => {
         year.textContent = yearCount;
     } else {
         monthCount--
-    }
+    };
     month.textContent = monthNames[monthCount];
     calendarCal(yearCount, monthCount);
 });
@@ -201,7 +201,7 @@ monthGo.addEventListener("click", () => {
         year.textContent = yearCount;
     } else {
         monthCount++
-    }
+    };
     month.textContent = monthNames[monthCount];
     calendarCal(yearCount, monthCount);
 });
