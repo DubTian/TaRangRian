@@ -57,32 +57,29 @@ const date = [
     document.getElementById("date6-5"),
     document.getElementById("date6-6"),
     document.getElementById("date6-7")
-]
+];
 
 const calendarCal = (yearCount, monthCount) => {
     let first = `${monthCount+1}-${1}-${yearCount-543}`;
-    let last = `${monthCount+1}-${lastDate(monthCount, yearCount)}-${yearCount-543}`;
+    let last = `${monthCount+1}-${lastDate(monthCount, yearCount-543)}-${yearCount-543}`;
     let firstDay = new Date(first).getDay();
     let lastDay = new Date(last).getDay();
-    let weekends = [0, 6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41]
+    let weekends = [0, 6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41];
 
     date[firstDay].textContent = 1;
     date[firstDay].classList.remove("block-day", "out-month");
-    console.log(firstDay, lastDay)
-    console.log(lastDate(monthCount, yearCount))
 
-    for(let i = 2; i<=lastDate(new Date().getMonth(), new Date().getFullYear()); i++) {
+    for(let i = 2; i<=lastDate(monthCount, yearCount-543); i++) {
         date[firstDay+i-1].textContent = i;
         date[firstDay+i-1].classList.remove("block-day", "out-month");
     };
 
     for(let i = 0; firstDay-i-1>=0; i++) {
-        date[firstDay-i-1].textContent = lastDate((monthCount-1+monthNames.length) % monthNames.length, yearCount)-i;
+        date[firstDay-i-1].textContent = lastDate((monthCount-1+monthNames.length) % monthNames.length, yearCount-543)-i;
         date[firstDay-i-1].classList.add("out-month");
     };
 
-    if(lastDate(monthCount, yearCount)===28 && firstDay===0) {
-        console.log("first")
+    if(lastDate(monthCount, yearCount-543)===28 && firstDay===0) {
         for(let i = 1; i<=7; i++) {
             date[i+27].textContent = i;
             date[i+27].classList.add("out-month");
@@ -91,20 +88,22 @@ const calendarCal = (yearCount, monthCount) => {
             date[i+34].textContent = i+13-lastDay;
             date[i+34].classList.add("out-month");
         };
-    } else if((lastDate(monthCount, yearCount)>=30 && firstDay>=5) || firstDay===6) {
-        console.log("second")
+    } else if(firstDay===6 && lastDate(monthCount, yearCount-543)===29) {
+        for(let i = 1; i<=7; i++) {
+            date[i+34].textContent = i;
+            date[i+34].classList.add("out-month");
+        };
+    } else if((lastDate(monthCount, yearCount-543)>=30 && firstDay>=5)) {
         for(let i = 1; lastDay+i<=6; i++) {
             date[lastDay+i+35].textContent = i;
             date[lastDay+i+35].classList.add("out-month");
         };
     } else if(lastDay===6){
-        console.log("third")
         for(let i = 1; i<=7; i++) {
             date[i+34].textContent = i;
             date[i+34].classList.add("out-month");
         };
     } else {
-        console.log("fourth")
         for(let i = 1; lastDay+i<=6; i++) {
             date[lastDay+i+28].textContent = i;
             date[lastDay+i+28].classList.add("out-month");
