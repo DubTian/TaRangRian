@@ -278,7 +278,7 @@ header{
 
 #classCell{
     display: grid;
-    grid-template-columns: 2.5fr repeat(12, 3.5fr);
+    grid-template-columns: 2.5fr repeat(11, 3.5fr);
     grid-template-rows: repeat(2, 0.5fr) 1.5fr;
     width: 100%;
 }
@@ -385,7 +385,7 @@ header{
         font-size: 1.5rem;
     }
     #classCell{
-        grid-template-columns: 2.5fr repeat(12, 3.5fr);
+        grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1.5fr) 4fr;
     }
 }
@@ -431,7 +431,7 @@ header{
         margin-bottom: 2rem;
     }
     #classCell{
-        grid-template-columns: 2.5fr repeat(12, 3.5fr);
+        grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1fr) 2fr;
     }
 }
@@ -512,7 +512,7 @@ header{
         margin-bottom: 3rem;
     }
     #classCell{
-        grid-template-columns: 2.5fr repeat(12, 3.5fr);
+        grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1.2fr) 2.5fr;
     }
 }

@@ -1,3 +1,6 @@
+import { db } from "./database.js"
+import { classNormal } from "./database.js";
+
 const year = document.getElementById("yearValue");
 const month = document.getElementById("monthValue");
 const yearBack = document.getElementById("yearBack");
@@ -14,7 +17,7 @@ const wed = document.querySelectorAll(".wed");
 const thu = document.querySelectorAll(".thu");
 const fri = document.querySelectorAll(".fri");
 
-const date = [
+const dates = [
     document.getElementById("date1-1"),
     document.getElementById("date1-2"),
     document.getElementById("date1-3"),
@@ -59,63 +62,135 @@ const date = [
     document.getElementById("date6-7")
 ];
 
-const calendarCal = (yearCount, monthCount) => {
-    let first = `${yearCount-543}-${1}-${monthCount+1}`;
-    let last = `${yearCount-543}-${lastDate(monthCount, yearCount-543)}-${monthCount+1}`;
+const cellTimes = [
+    document.getElementById("cellTime1"),
+    document.getElementById("cellTime2"),
+    document.getElementById("cellTime3"),
+    document.getElementById("cellTime4"),
+    document.getElementById("cellTime5"),
+    document.getElementById("cellTime6"),
+    document.getElementById("cellTime7"),
+    document.getElementById("cellTime8"),
+    document.getElementById("cellTime9"),
+    document.getElementById("cellTime10"),
+    document.getElementById("cellTime11")
+];
+
+const classes = [
+    {
+        "subject": document.getElementById("class1-1"),
+        "teacher": document.getElementById("class1-2"),
+        "room": document.getElementById("class1-3")
+    },
+    {
+        "subject": document.getElementById("class2-1"),
+        "teacher": document.getElementById("class2-2"),
+        "room": document.getElementById("class2-3")
+    },
+    {
+        "subject": document.getElementById("class3-1"),
+        "teacher": document.getElementById("class3-2"),
+        "room": document.getElementById("class3-3")
+    },
+    {
+        "subject": document.getElementById("class4-1"),
+        "teacher": document.getElementById("class4-2"),
+        "room": document.getElementById("class4-3")
+    },
+    {
+        "subject": document.getElementById("class5-1"),
+        "teacher": document.getElementById("class5-2"),
+        "room": document.getElementById("class5-3")
+    },
+    {
+        "subject": document.getElementById("class6-1"),
+        "teacher": document.getElementById("class6-2"),
+        "room": document.getElementById("class6-3")
+    },
+    {
+        "subject": document.getElementById("class7-1"),
+        "teacher": document.getElementById("class7-2"),
+        "room": document.getElementById("class7-3")
+    },
+    {
+        "subject": document.getElementById("class8-1"),
+        "teacher": document.getElementById("class8-2"),
+        "room": document.getElementById("class8-3")
+    },
+    {
+        "subject": document.getElementById("class9-1"),
+        "teacher": document.getElementById("class9-2"),
+        "room": document.getElementById("class9-3")
+    },
+    {
+        "subject": document.getElementById("class10-1"),
+        "teacher": document.getElementById("class10-2"),
+        "room": document.getElementById("class10-3")
+    },
+    {
+        "subject": document.getElementById("class11-1"),
+        "teacher": document.getElementById("class11-2"),
+        "room": document.getElementById("class11-3")
+    }
+];
+
+const calendarCal = (monthCount, yearCount) => {
+    let first = `${yearCount-543}-${monthCount+1}-${1}`;
+    let last = `${yearCount-543}-${monthCount+1}-${lastDate(monthCount, yearCount-543)}`;
     let firstDay = new Date(first).getDay();
     let lastDay = new Date(last).getDay();
     let weekends = [0, 6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41];
 
-    date[firstDay].textContent = 1;
-    date[firstDay].classList.remove("block-day", "out-month");
+    dates[firstDay].textContent = 1;
+    dates[firstDay].classList.remove("block-day", "out-month");
 
     for(let i = 2; i<=lastDate(monthCount, yearCount-543); i++) {
-        date[firstDay+i-1].textContent = i;
-        date[firstDay+i-1].classList.remove("block-day", "out-month");
+        dates[firstDay+i-1].textContent = i;
+        dates[firstDay+i-1].classList.remove("block-day", "out-month");
     };
 
     for(let i = 0; firstDay-i-1>=0; i++) {
-        date[firstDay-i-1].textContent = lastDate((monthCount-1+monthNames.length) % monthNames.length, yearCount-543)-i;
-        date[firstDay-i-1].classList.add("out-month");
+        dates[firstDay-i-1].textContent = lastDate((monthCount-1+monthNames.length) % monthNames.length, yearCount-543)-i;
+        dates[firstDay-i-1].classList.add("out-month");
     };
 
     if(lastDate(monthCount, yearCount-543)===28 && firstDay===0) {
         for(let i = 1; i<=7; i++) {
-            date[i+27].textContent = i;
-            date[i+27].classList.add("out-month");
+            dates[i+27].textContent = i;
+            dates[i+27].classList.add("out-month");
         };
         for(let i = 1; i<=7; i++) {
-            date[i+34].textContent = i+13-lastDay;
-            date[i+34].classList.add("out-month");
+            dates[i+34].textContent = i+13-lastDay;
+            dates[i+34].classList.add("out-month");
         };
     } else if(firstDay===6 && lastDate(monthCount, yearCount-543)===29) {
         for(let i = 1; i<=7; i++) {
-            date[i+34].textContent = i;
-            date[i+34].classList.add("out-month");
+            dates[i+34].textContent = i;
+            dates[i+34].classList.add("out-month");
         };
     } else if((lastDate(monthCount, yearCount-543)>=30 && firstDay>=5)) {
         for(let i = 1; lastDay+i<=6; i++) {
-            date[lastDay+i+35].textContent = i;
-            date[lastDay+i+35].classList.add("out-month");
+            dates[lastDay+i+35].textContent = i;
+            dates[lastDay+i+35].classList.add("out-month");
         };
     } else if(lastDay===6){
         for(let i = 1; i<=7; i++) {
-            date[i+34].textContent = i;
-            date[i+34].classList.add("out-month");
+            dates[i+34].textContent = i;
+            dates[i+34].classList.add("out-month");
         };
     } else {
         for(let i = 1; lastDay+i<=6; i++) {
-            date[lastDay+i+28].textContent = i;
-            date[lastDay+i+28].classList.add("out-month");
+            dates[lastDay+i+28].textContent = i;
+            dates[lastDay+i+28].classList.add("out-month");
         };
         for(let i = 1; i<=7; i++) {
-            date[i+34].textContent = i+6-lastDay;
-            date[i+34].classList.add("out-month");
+            dates[i+34].textContent = i+6-lastDay;
+            dates[i+34].classList.add("out-month");
         };
     };
 
     for(let weekend in weekends) {
-        date[weekends[weekend]].classList.add("block-day");
+        dates[weekends[weekend]].classList.add("block-day");
     };
 };
 
@@ -135,6 +210,41 @@ const lastDate = (mv, yv) => {
         };
     };
 };
+
+const classLoad = async (dayTh, dayEn, mv, yv) => {
+    for(let i = 1; i<=11; i++) {
+        classes[i-1].subject.innerHTML = "Loading...";
+        classes[i-1].teacher.innerHTML = "Loading...";
+        classes[i-1].room.innerHTML = "Loading...";
+    };
+
+    if((mv<=4 && yv<=2569) || yv<=2568) {
+        for(let i = 1; i<=11; i++) {
+            classes[i-1].subject.innerHTML = "no data";
+            classes[i-1].teacher.innerHTML = "no data";
+            classes[i-1].room.innerHTML = "no data";
+        };
+    };
+
+    const result = await classNormal(dayEn, termCheck(mv, yv));
+    classDay.textContent = dayTh;
+
+    for(let i = 1; i<=11; i++) {
+        classes[i-1].subject.innerHTML = result[0].class[i-1].subject;
+        classes[i-1].teacher.innerHTML = result[0].class[i-1].teacher;
+        classes[i-1].room.innerHTML = result[0].class[i-1].room;
+    };
+}
+
+const termCheck = (mv, yv) => {
+    if(mv>=4 && mv<=8) {
+        return(`${yv}-1`)
+    } else if(mv>=9) {
+        return(`${yv}-2`)
+    } else {
+        return(`${yv-1}-2`)
+    }
+}
 
 let yearCount = new Date().getFullYear()+543;
 year.textContent = yearCount;
@@ -163,7 +273,7 @@ yearBack.addEventListener("click", () => {
         yearCount--;
     };
     year.textContent = yearCount;
-    calendarCal(yearCount, monthCount);
+    calendarCal(monthCount, yearCount);
 });
 yearGo.addEventListener("click", () => {
     if(yearCount===new Date().getFullYear()+544) {
@@ -172,7 +282,7 @@ yearGo.addEventListener("click", () => {
         yearCount++;
     };
     year.textContent = yearCount;
-    calendarCal(yearCount, monthCount);
+    calendarCal(monthCount, yearCount);
 });
 
 monthBack.addEventListener("click", () => {
@@ -188,7 +298,7 @@ monthBack.addEventListener("click", () => {
         monthCount--
     };
     month.textContent = monthNames[monthCount];
-    calendarCal(yearCount, monthCount);
+    calendarCal(monthCount, yearCount);
 });
 monthGo.addEventListener("click", () => {
     if(monthCount===11){
@@ -203,7 +313,7 @@ monthGo.addEventListener("click", () => {
         monthCount++
     };
     month.textContent = monthNames[monthCount];
-    calendarCal(yearCount, monthCount);
+    calendarCal(monthCount, yearCount);
 });
 
 dateBlocks.forEach((dateBlock) =>
@@ -217,37 +327,37 @@ dateBlocks.forEach((dateBlock) =>
 mon.forEach((monJr) =>
     monJr.addEventListener("click", () => {
         if(!monJr.classList.contains("out-month") && !monJr.classList.contains("block-day")) {
-            classDay.textContent = "จันทร์";
+            classLoad("จันทร์", "mon", monthCount, yearCount);
         };
     })
 );
 tue.forEach((tueJr) =>
-    tueJr.addEventListener("click", () => {
+    tueJr.addEventListener("click", async () => {
         if(!tueJr.classList.contains("out-month") && !tueJr.classList.contains("block-day")) {
-            classDay.textContent = "อังคาร";
+            classLoad("อังคาร", "tue", monthCount, yearCount);
         };
     })
 );
 wed.forEach((wedJr) =>
-    wedJr.addEventListener("click", () => {
+    wedJr.addEventListener("click", async () => {
         if(!wedJr.classList.contains("out-month") && !wedJr.classList.contains("block-day")) {
-            classDay.textContent = "พุธ";
+            classLoad("พุธ", "wed", monthCount, yearCount);
         };
     })
 );
 thu.forEach((thuJr) =>
-    thuJr.addEventListener("click", () => {
+    thuJr.addEventListener("click", async () => {
         if(!thuJr.classList.contains("out-month") && !thuJr.classList.contains("block-day")) {
-            classDay.textContent = "พฤหัสฯ";
+            classLoad("พฤหัสฯ", "thu", monthCount, yearCount);
         };
     })
 );
 fri.forEach((friJr) =>
-    friJr.addEventListener("click", () => {
+    friJr.addEventListener("click", async () => {
         if(!friJr.classList.contains("out-month") && !friJr.classList.contains("block-day")) {
-            classDay.textContent = "ศุกร์";
+            classLoad("ศุกร์", "fri", monthCount, yearCount);
         };
     })
 );
 
-calendarCal(yearCount, monthCount);
+calendarCal(monthCount, yearCount);

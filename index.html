@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wdth,wght@62.5..100,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <title>ตารางเรียนออนไลน์ 4.3</title>
     <link rel="stylesheet" href="index.css">
-    <script src="index.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script type="module" src="app.js" defer></script>
 </head>
 <body>
     <header>
@@ -111,7 +112,6 @@
                 <div class="cell-block cell-hour">9</div>
                 <div class="cell-block cell-hour">10</div>
                 <div class="cell-block cell-hour">11</div>
-                <div class="cell-block cell-hour">12</div>
             
                 <div class="cell-block cell-time">เวลา</div>
                 <div class="cell-block cell-time" id="cellTime1">08.10-08.30</div>
@@ -125,21 +125,19 @@
                 <div class="cell-block cell-time" id="cellTime9">14.20-15.10</div>
                 <div class="cell-block cell-time" id="cellTime10">15.10-16.00</div>
                 <div class="cell-block cell-time" id="cellTime11">16.00-16.50</div>
-                <div class="cell-block cell-time" id="cellTime12">16.50-17.40</div>
 
                 <div class="cell-block" id="classDay">X</div>
-                <div class="cell-block" id="class1">XXX<br>XXX<br>XX</div>
-                <div class="cell-block" id="class2">XXX<br>XXX<br>XX</div>
-                <div class="cell-block" id="class3">XXX<br>XXX<br>XX</div>
-                <div class="cell-block" id="class4">XXX<br>XXX<br>XX</div>
-                <div class="cell-block" id="class5">XXX<br>XXX<br>XX</div>
-                <div class="cell-block" id="class6">พัก</div>
-                <div class="cell-block" id="class7">XXX<br>XXX<br>XX</div>
-                <div class="cell-block" id="class8">XXX<br>XXX<br>XX</div>
-                <div class="cell-block" id="class9">XXX<br>XXX<br>XX</div>
-                <div class="cell-block" id="class10">XXX<br>XXX<br>XX</div>
-                <div class="cell-block" id="class11">XXX<br>XXX<br>XX</div>
-                <div class="cell-block" id="class12">XXX<br>XXX<br>XX</div>
+                <div class="cell-block cell-class"> <p id="class1-1">XXX</p><p id="class1-2">XXX</p><p id="class1-3">XX</p> </div>
+                <div class="cell-block cell-class"> <p id="class2-1">XXX</p><p id="class2-2">XXX</p><p id="class2-3">XX</p> </div>
+                <div class="cell-block cell-class"> <p id="class3-1">XXX</p><p id="class3-2">XXX</p><p id="class3-3">XX</p> </div>
+                <div class="cell-block cell-class"> <p id="class4-1">XXX</p><p id="class4-2">XXX</p><p id="class4-3">XX</p> </div>
+                <div class="cell-block cell-class"> <p id="class5-1">XXX</p><p id="class5-2">XXX</p><p id="class5-3">XX</p> </div>
+                <div class="cell-block cell-class"> <p id="class6-1">พัก</p><p id="class6-2">&nbsp;</p><p id="class6-3">&nbsp;</p> </div>
+                <div class="cell-block cell-class"> <p id="class7-1">XXX</p><p id="class7-2">XXX</p><p id="class7-3">XX</p> </div>
+                <div class="cell-block cell-class"> <p id="class8-1">XXX</p><p id="class8-2">XXX</p><p id="class8-3">XX</p> </div>
+                <div class="cell-block cell-class"> <p id="class9-1">XXX</p><p id="class9-2">XXX</p><p id="class9-3">XX</p> </div>
+                <div class="cell-block cell-class"> <p id="class10-1">XXX</p><p id="class10-2">XXX</p><p id="class10-3">XX</p> </div>
+                <div class="cell-block cell-class"> <p id="class11-1">XXX</p><p id="class11-2">XXX</p><p id="class11-3">XX</p> </div>
             </div>
         </section>
     </main>
