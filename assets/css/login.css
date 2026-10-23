@@ -1,0 +1,536 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --main_bg_color: #F8F9FA;
+    --first_color: #495057;
+    --second_color: #E9ECEF;
+    --text_color: #000000;
+    --hover_second: #ffffff;
+    --important_color: #FF1229;
+    --soft_first: #CFD2D4;
+    --heavy_first: #282D33;
+    --heavy_second: #DEE2E3;
+    --haevy_heavy_second: #D2D5D6;
+    --heavy_important: #A3121E;
+    --button_active: #D4D4D4;
+
+    --header_height: 0px;
+}
+
+html{
+    background-color: var(--main_bg_color);
+}
+
+header{
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 5vh;
+    font-family: "Noto Sans Thai";
+}
+
+nav{
+    display: flex;
+    justify-content: end ;
+    align-items: center;
+}
+
+nav a{
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text_color);
+    background-color: var(--second_color);
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    user-select: none;
+}
+
+nav a:hover{
+    background-color: var(--haevy_heavy_second);
+}
+
+nav a:focus{
+    outline: none;
+    background-color: var(--haevy_heavy_second);
+}
+
+main{
+    width: 80%;
+    min-height: 40%;
+    border-radius: 20px;
+    margin: calc(var(--header_height) + 1.4rem) auto;
+    background-color: var(--hover_second);
+}
+
+form{
+    padding: 1.5rem;
+    font-family: "Sarabun";
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+form h1{
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+form div{
+    margin: 0.5rem 0;
+}
+
+label{
+    display: block;
+    margin: 0 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+input{
+    width: 100%;
+    padding: 0.4em 0.6em;
+    border: 2px solid var(--haevy_heavy_second);
+    border-radius: 10px;
+    margin: 0.3rem 0;
+    font-family: "Noto Sans Thai";
+    font-size: 0.8rem;
+    box-shadow: 0 2px 0 var(--haevy_heavy_second);
+    transition:
+        border 0.1s ease-out,
+        box-shadow 0.08s ease-out;
+}
+
+input:focus{
+    outline: none;
+    border: 2px solid var(--first_color);
+    box-shadow: 0 4px 0 var(--first_color);
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 4.7vh;
+    padding: 2% 2%;
+    background-color: var(--second_color);
+}
+
+.home{
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text_color);
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.header-line{
+    height: 0.3vh;
+    background-color: var(--first_color);
+}
+
+.error-input{
+    border: 2px solid var(--important_color);
+    box-shadow: 0 2px 0 var(--important_color);
+}
+
+.errorMessage{
+    display: none;
+    margin: 0 1em;
+    font-size: 0.7rem;
+    color: var(--important_color);
+}
+
+.submit{
+    padding: 0.5rem 0.8rem;
+    border: 2px solid var(--first_color);
+    border-radius: 10px;
+    font-family: "Sarabun";
+    font-size: 1rem;
+    color: var(--hover_second);
+    background-color: var(--first_color);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        background-color 0.2s ease-out,
+        opacity 0.05s ease-out;
+}
+
+.submit:hover{
+    border: 2px solid var(--heavy_first);
+    background-color: var(--heavy_first);
+}
+
+.submit:active{
+    color: var(--haevy_heavy_second);
+    opacity: 50%;
+}
+
+.desc{
+    width: 85%;
+    margin: 0.8rem 0;
+    font-family: "Sarabun";
+    font-size: 0.7rem;
+    opacity: 50%;
+}
+
+.descitp{
+    margin: 0.8rem 0;
+    font-family: "Sarabun";
+    font-size: 0.7rem;
+    opacity: 50%;
+}
+
+.otp{
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.outSubmitOtp{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2.5rem auto 0.7rem;
+}
+
+.submitOtp{
+    width: 100%;
+    padding: 3% 0;
+}
+
+#outSubmit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2.5rem auto 0.7rem;
+}
+
+#goEmail{
+    margin: 2rem 0 0;
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#logInOtp{
+    display: none;
+}
+
+#verifyEmail{
+    display: none;
+}
+
+#descrip{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#goPassword{
+    font-size: 0.6rem;
+    text-align: end;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#verifyOtp{
+    display: none;
+}
+
+#otpInput{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    column-gap: 0.6rem;
+}
+
+#otpInput input{
+    aspect-ratio: 1/1;
+}
+
+#backEmail{
+    border: 2px solid var(--first_color);
+    color: var(--first_color);
+    background-color: var(--hover_second);
+}
+
+#backEmail:hover{
+    background-color: var(--second_color);
+}
+
+#backEmail:active{
+    color: var(--haevy_heavy_second);
+    opacity: 50%;
+}
+
+#submitOtp{
+    margin-left: 1.5rem;
+}
+
+@keyframes loading{
+    0%{
+        pointer-events: none;
+        cursor: wait;
+        opacity: 50%;
+    }
+    70%{
+        pointer-events: none;
+        cursor: wait;
+        opacity: 60%;
+    }
+    100%{
+        pointer-events: none;
+        cursor: wait;
+        opacity: 70%;
+    }
+}
+
+@media(min-width: 768px){
+    header{
+        min-height: 7.5vh;
+    }
+    nav{
+        width: 40%;
+        border-radius: 10px;
+    }
+    nav a{
+        padding: 0.3rem 1rem;
+        font-size: 1.5rem;
+    }
+    main{
+        width: 70%;
+        border-radius: 20px;
+        margin: calc(var(--header_height) + 2rem) auto;
+    }
+    form{
+        padding: 2rem;
+    }
+    form h1{
+        margin-bottom: 2.5rem;
+        font-size: 1.8rem;
+    }
+    form div{
+        margin: 0.6rem 0;
+    }
+    label{
+        font-size: 1.2rem;
+    }
+    input{
+        border: 3px solid var(--haevy_heavy_second);
+        margin: 0.5rem 0;
+        font-size: 1rem;
+        box-shadow: 0 4px 0 var(--haevy_heavy_second);  
+    }
+    input:focus{
+        border: 3px solid var(--first_color);
+        box-shadow: 0 6px 0 var(--first_color);  
+    }
+    .header{
+        min-height: 7.1vh;
+        padding: 2%;
+    }
+    .home{
+        font-size: 2rem;
+    }
+    .header-line{
+        height: 3px;
+    }
+    .error-input{
+        box-shadow: 0 3px 0 var(--important_color);
+    }
+    .submit{
+        border-radius: 20px;
+    }
+    .desc{
+        width: 80%;
+        font-size: 1rem;
+        margin: 1.2rem 0;
+    }
+    .descitp{
+        font-size: 1rem;
+        margin: 1.2rem 0;
+    }
+    .otp{
+        font-size: 1.5rem;
+    }
+    .outSubmitOtp{
+        margin: 3.2rem auto 0.7rem;
+    }
+    .submitOtp{
+        padding: 3% 0;
+        font-size: 1.3rem;
+    }
+    #outSubmit{
+        margin: 3.5rem auto 0.8rem;
+    }
+    #submit{
+        padding: 0.6rem 1.2rem;
+        font-size: 1.2rem;
+    }
+    #goEmail{
+        margin: 3rem 0 0;
+    }
+    #goPassword{
+        font-size: 0.9rem;
+    }
+    #otpInput{
+        column-gap: 1.7rem;
+    }
+    #backEmail{
+        border: 3px solid var(--first_color);
+    }
+}
+
+@media(min-width: 1024px){
+    nav a{
+        padding: 0.5rem 1.3rem;
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
+    main{
+        margin: calc(var(--header_height) + 4rem) auto;
+    }
+    input{
+        border: 4px solid var(--haevy_heavy_second);
+        box-shadow: 0 5px 0 var(--haevy_heavy_second);  
+    }
+    input:focus{
+        border: 4px solid var(--first_color);
+        box-shadow: 0 7px 0 var(--first_color);  
+    }
+    .header{
+        padding: 1% 2%;
+    }
+    .home{
+        font-size: 2.5rem;
+    }
+    .desc{
+        width: 100%;
+        font-size: 1.2rem;
+        margin: 0 0 2rem;
+    }
+    .outSubmitOtp{
+        margin: 5rem auto 0.7rem;
+    }
+    .submitOtp{
+        width: 97%;
+        padding: 2% 0;
+        font-size: 2rem;
+    }
+    .descOtp{
+        font-size: 1.2rem;
+        margin: 0 0 2rem;
+    }
+    #submit{
+        padding: 0.5rem 1.8rem;
+        font-size: 1.6rem;
+    }
+    #goPassword{
+        font-size: 1rem;
+    }
+    #otpInput{
+        column-gap: 3.2rem;
+    }
+    #backEmail{
+        border: 3.5px solid var(--first_color);
+    }
+}
+
+@media(min-width: 1280px){
+    header{
+        min-height: 0vh;
+    }
+    nav{
+        width: 30%;
+    }
+    nav a{
+        padding: 0.3rem 1rem;
+        font-size: 1.5rem;
+    }
+    main{
+        width: 35%;
+        margin: calc(var(--header_height) + 1rem) auto;
+    }
+    form{
+        padding: 1rem;
+    }
+    form h1{
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+    form div{
+        margin: 0.2rem 0;
+    }
+    label{
+        font-size: 0.9rem;
+    }
+    input{
+        min-height: 2.2rem;
+        border: 3px solid var(--haevy_heavy_second);
+        padding: 0.7rem;
+        font-size: 0.9rem;
+        box-shadow: 0 2px 0 var(--haevy_heavy_second);
+    }
+    input:focus{ 
+        border: 3px solid var(--first_color);
+        box-shadow: 0 3px 0 var(--first_color);
+    }
+    input:focus{
+        box-shadow: 0 6px 0 var(--first_color);  
+    }
+    .header{
+        min-height: 7vh;
+        padding: 0.5% 2%;
+    }
+    .home{
+        font-size: 2rem;
+    }
+    .error-input{
+        box-shadow: 0 2px 0 var(--important_color);
+    }
+    .desc{
+        width: 90%;
+        font-size: 1rem;
+        margin: 1.2rem 0;
+    }
+    .descitp{
+        font-size: 1rem;
+        margin: 1.2rem 0;
+    }
+    .otp{
+        font-size: 1.5rem;
+    }
+    .outSubmitOtp{
+        margin: 3.2rem auto 0.7rem;
+    }
+    .submitOtp{
+        padding: 0.5rem 0;
+        font-size: 1.4rem;
+    }
+    #outSubmit{
+        margin: 2rem auto 0.9rem;
+    }
+    #submit{
+        padding: 0.5rem 1.5rem;
+        font-size: 1.1rem;
+    }
+    #goEmail{
+        margin: 2rem 0 0;
+    }
+    #otpInput{
+        column-gap: 1.2rem;
+    }
+}

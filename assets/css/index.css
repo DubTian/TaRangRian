@@ -9,11 +9,16 @@
     --first_color: #495057;
     --second_color: #E9ECEF;
     --text_color: #000000;
-    --soft_first: #CFD2D4;
     --hover_second: #ffffff;
+    --important_color: #FF1229;
+    --soft_first: #CFD2D4;
+    --heavy_first: #282D33;
     --heavy_second: #DEE2E3;
     --haevy_heavy_second: #D2D5D6;
+    --heavy_important: #A3121E;
     --button_active: #D4D4D4;
+
+    --header_height: 0px;
 }
 
 html{
@@ -25,7 +30,7 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -34,16 +39,44 @@ header{
     font-family: "Noto Sans Thai";
 }
 
+nav{
+    display: flex;
+    justify-content: end ;
+    align-items: center;
+}
+
+nav a{
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text_color);
+    background-color: var(--second_color);
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    user-select: none;
+}
+
+nav a:hover{
+    background-color: var(--haevy_heavy_second);
+}
+
+nav a:focus{
+    outline: none;
+    background-color: var(--haevy_heavy_second);
+}
+
 .header{
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    min-height: 4.7vh;
+    min-height: 6vh;
     padding: 2% 2%;
     background-color: var(--second_color);
 }
 
-.header a{
-    font-size: 1.5rem;
+.home{
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--text_color);
     text-decoration: none;
@@ -92,6 +125,7 @@ header{
 .set button{
     height: 2.5rem;
     aspect-ratio: 1/1;
+    border-radius: 50%;
     font-family: "Noto Sans Thai";
     font-size: 2rem;
     font-weight: 400;
@@ -101,11 +135,12 @@ header{
     color: var(--text_color);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.02s ease-out,
+        transform 0.05s ease-out;
 }
 
 .set button:active{
     background-color: var(--button_active);
-    border-radius: 50%;
     transform: scale(0.9);
 }
 
@@ -127,10 +162,18 @@ header{
 }
 
 .date{
+    width: 100%;
+    height: 100%;
     font-size: 1.2rem;
     font-weight: 200;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
+    transition:
+        transform 0.05s ease-out,
+        width 0.05s ease-out,
+        height 0.05s ease-out,
+        font-size 0.1s ease-out,
+        background-color 0.15s ease-out;
 }
 
 .date:hover{
@@ -207,8 +250,16 @@ header{
     font-size: 0.25rem;
 }
 
+#logOutNav{
+    display: none;
+}
+
+#userNav{
+    display: none;
+}
+
 #firstElement{
-    margin-top: 0.8rem;
+    margin-top: calc(var(--header_height) + 0.8rem);
 }
 
 #outCalendar{
@@ -259,7 +310,7 @@ header{
 
 #cell{
     display: none;
-    margin: 0 0.75rem;
+    margin: 0 0.75rem 1.5rem;
     font-family: "Sarabun";
     font-size: 0.32rem;
     font-weight: 400;
@@ -268,10 +319,11 @@ header{
 #cellHeader{
     display: flex;
     justify-content: center;
-    margin-bottom: 0.7rem;
+    margin-bottom: 1rem;
 }
 
 #cellHeader h4{
+    font-family: "Noto Sans Thai";
     font-size: 1.2rem;
     font-weight: 450;
 }
@@ -283,19 +335,53 @@ header{
     width: 100%;
 }
 
+#fixButton{
+    display: flex;
+    justify-content: center;
+}
+
+#fixButton button{
+    min-width: 12%;
+    border: none;
+    border-radius: 5px;
+    padding: 0.25rem;
+    margin-top: 2.5rem;
+    font-family: "Sarabun";
+    font-size: 0.8rem;
+    font-weight: 200;
+    letter-spacing: 0.05rem;
+    color: var(--hover_second);
+    background: transparent;
+    background-color: var(--important_color);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#fixButton button:active{
+    transform: scale(0.9);
+    opacity: 50%;
+}
+
 @media(min-width: 768px){
     header{
         min-height: 7.5vh;
+    }
+    nav{
+        border-radius: 10px;
+    }
+    nav a{
+        padding: 0.3rem 1rem;
+        font-size: 1.5rem;
     }
     .header{
         min-height: 7.1vh;
         padding: 2%;
     }
-    .header a{
+    .home{
         font-size: 2rem;
     }
     .header-line{
-        height: 0.4vh;
+        height: 3px;
     }
     .descrip{
         font-size: 1.2rem;
@@ -345,7 +431,7 @@ header{
         font-size: 0.5rem;
     }
     #firstElement{
-        margin-top: 0.8rem;
+        margin-top: calc(var(--header_height) + 0.8rem);
     }
     #outCalendar{
         min-height: 0;
@@ -388,13 +474,26 @@ header{
         grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1.5fr) 4fr;
     }
+
+    #fixButton button{
+        min-width: 15%;
+        border-radius: 10px;
+        padding: 0.3rem;
+        margin-top: 3rem;
+        font-size: 1.5rem;
+    }
 }
 
 @media(min-width: 1024px){
+    nav a{
+        padding: 0.5rem 1.3rem;
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
     .header{
         padding: 1% 2%;
     }
-    .header a{
+    .home{
         font-size: 2.5rem;
     }
     .calendar-block{
@@ -407,7 +506,7 @@ header{
         font-size: 0.75rem;
     }
     #first_Element{
-        margin-top: 1.5rem;
+        margin-top: calc(var(--header_height) + 1.5rem);
     }
     #out_Calendar{
         margin: 0.1rem 1.5rem 1rem;
@@ -434,21 +533,26 @@ header{
         grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1fr) 2fr;
     }
+    #fixButton button{
+        margin-top: 6rem;
+        font-weight: 300;
+    }
 }
 
 @media(min-width: 1280px){
     header{
         min-height: 0vh;
     }
+    nav a{
+        padding: 0.3rem 1rem;
+        font-size: 1.5rem;
+    }
     .header{
-        min-height: 7vh;
+        min-height: 2.8rem;
         padding: 0.5% 2%;
     }
-    .header a{
+    .home{
         font-size: 2rem;
-    }
-    .header-line{
-        height: 0.5vh;
     }
     .descrip{
         font-size: 1.2rem;
@@ -488,7 +592,7 @@ header{
         font-size: 1rem;
     }
     #firstElement{
-        margin-top: 1rem;
+        margin-top: calc(var(--header_height) + 1rem);
     }
     #year h4{
         font-size: 2.6rem;
@@ -514,5 +618,21 @@ header{
     #classCell{
         grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1.2fr) 2.5fr;
+    }
+    #fixButton button{
+        min-width: 15%;
+        border-radius: 10px;
+        padding: 0.3rem;
+        margin-top: 6rem;
+        font-size: 1.5rem;
+        font-weight: 300;
+        transition: transform 0.1s ease-out;
+    }
+    #fixButton button:hover{
+        transform: scale(1.2);
+    }
+    #fixButton button:active{
+        transform: scale(1.1);
+        opacity: 50%;
     }
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wdth,wght@62.5..100,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <title>ตารางเรียนออนไลน์ 4.3</title>
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script type="module" src="../assets/js/login.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <a href="../" class="home">ตารางเรียนออนไลน์ 4.3</a>
+            <nav>
+                <a href="../signup/">ลงชื่อเข้าใช้</a>
+                <a href="./">เข้าสู่ระบบ</a>
+            </nav>
+        </div>
+        <div class="header-line"></div>
+    </header>
+    <main>
+        <form id="logIn" novalidate>
+            <h1>เข้าสู่ระบบ</h1>
+            <div>
+                <div>
+                    <label>อีเมล</label>
+                    <input type="email" id="email" name="email" placeholder="กรอกอีเมล">
+                    <p class="errorMessage" id="errorEmail">*กรุณากรอกอีเมลที่ถูกต้อง</p>
+                </div>
+                <div>
+                    <label>รหัสผ่าน</label>
+                    <input type="password" id="password" name="password" placeholder="กรอกรหัสผ่าน">
+                    <p class="errorMessage" id="errorPassword">*กรุณากรอกรหัสผ่านที่ถูกต้อง</p>
+                </div>
+            </div>
+            <div id="outSubmit">
+                <button type="submit" class="submit" id="submit">เข้าสู่ระบบ</button>
+                <p class="desc" id="goEmail">เข้าสู่ระบบด้วยรหัสยืนยัน (OTP)</p>
+            </div>
+        </form>
+
+        <form id="logInOtp" novalidate>
+            <section id="verifyEmail">
+                <h1>ยืนยันอีเมล</h1>
+                <div id="descrip">
+                    <p class="descitp">กรอกอีเมลเพื่อรับรหัสยืนยัน (OTP)</p>
+                    <p class="descitp" id="goPassword">เข้าสู่ระบบด้วยรหัสผ่าน</p>
+                </div>
+                <div>
+                    <input type="email" id="emailOtp" name="email" placeholder="กรอกอีเมล">
+                    <p class="errorMessage" id="errorEmailOtp">*กรุณากรอกอีเมลที่ถูกต้อง</p>
+                </div>
+                <div class="outSubmitOtp">
+                    <button type="submit" class="submit submitOtp" id="submitEmail">รับรหัสยืนยัน (OTP)</button>
+                </div>
+            </section>
+            <section id="verifyOtp">
+                <h1>ยืนยันอีเมล</h1>
+                <p class="desc">เราได้ส่งรหัสยืนยัน (OTP) ไปทางอีเมลแล้ว นำรหัสมาใส่ในช่องและกดยืนยัน</p>
+                <div id="otpInput">
+                    <input type="text" class="otp" name="otp" maxlength="1" inputmode="numeric">
+                    <input type="text" class="otp" name="otp" maxlength="1" inputmode="numeric">
+                    <input type="text" class="otp" name="otp" maxlength="1" inputmode="numeric">
+                    <input type="text" class="otp" name="otp" maxlength="1" inputmode="numeric">
+                    <input type="text" class="otp" name="otp" maxlength="1" inputmode="numeric">
+                    <input type="text" class="otp" name="otp" maxlength="1" inputmode="numeric">
+                </div>
+                <div class="outSubmitOtp">
+                    <button class="submit submitOtp" id="backEmail">ยกเลิก</button>
+                    <button type="submit" class="submit submitOtp" id="submitOtp">เข้าสู่ระบบ</button>
+                </div>
+            </section>
+    </main>
+</body>
+</html>

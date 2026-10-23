@@ -8,14 +8,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wdth,wght@62.5..100,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <title>ตารางเรียนออนไลน์ 4.3</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-    <script type="module" src="app.js" defer></script>
+    <script type="module" src="./assets/js/app.js" defer></script>
 </head>
 <body>
     <header>
         <div class="header">
-            <a href="./">ตารางเรียนออนไลน์ 4.3</a>
+            <a href="./" class="home">ตารางเรียนออนไลน์ 4.3</a>
+            <nav>
+                <a href="./signup/" id="signUpNav">ลงชื่อเข้าใช้</a>
+                <a href="./login/" id="logInNav">เข้าสู่ระบบ</a>
+                <a href="" id="logOutNav">ออกจากระบบ</a>
+                <a href="./" id="userNav">บัญชีผู้ใช้</a>
+            </nav>
         </div>
         <div class="header-line"></div>
     </header>
@@ -138,6 +144,9 @@
                 <div class="cell-block cell-class"> <p id="class9-1">XXX</p><p id="class9-2">XXX</p><p id="class9-3">XX</p> </div>
                 <div class="cell-block cell-class"> <p id="class10-1">XXX</p><p id="class10-2">XXX</p><p id="class10-3">XX</p> </div>
                 <div class="cell-block cell-class"> <p id="class11-1">XXX</p><p id="class11-2">XXX</p><p id="class11-3">XX</p> </div>
+            </div>
+            <div id="fixButton">
+                <button>แก้ไข</button>
             </div>
         </section>
     </main>

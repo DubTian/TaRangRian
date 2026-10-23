@@ -1,5 +1,6 @@
-import { db } from "./database.js"
+import { logOut } from "./database.js";
 import { classNormal } from "./database.js";
+import { userSession } from "./database.js";
 
 const year = document.getElementById("yearValue");
 const month = document.getElementById("monthValue");
@@ -9,6 +10,10 @@ const monthBack = document.getElementById("monthBack");
 const monthGo = document.getElementById("monthGo");
 const cell = document.getElementById("cell");
 const classDay = document.getElementById("classDay");
+const signUpNav = document.getElementById("signUpNav");
+const logInNav = document.getElementById("logInNav");
+const logOutNav = document.getElementById("logOutNav");
+const userNav = document.getElementById("userNav");
 
 const dateBlocks = document.querySelectorAll(".date");
 const mon = document.querySelectorAll(".mon");
@@ -16,6 +21,8 @@ const tue = document.querySelectorAll(".tue");
 const wed = document.querySelectorAll(".wed");
 const thu = document.querySelectorAll(".thu");
 const fri = document.querySelectorAll(".fri");
+
+const header = document.querySelector("header");
 
 const dates = [
     document.getElementById("date1-1"),
@@ -134,6 +141,11 @@ const classes = [
     }
 ];
 
+const headerHeight = () => {
+    const height = header.offsetHeight;
+    document.documentElement.style.setProperty("--header_height", `${height}px`)
+};
+
 const calendarCal = (monthCount, yearCount) => {
     let first = `${yearCount-543}-${monthCount+1}-${1}`;
     let last = `${yearCount-543}-${monthCount+1}-${lastDate(monthCount, yearCount-543)}`;
@@ -246,6 +258,8 @@ const termCheck = (mv, yv) => {
     }
 }
 
+const user = await userSession();
+
 let yearCount = new Date().getFullYear()+543;
 year.textContent = yearCount;
 
@@ -265,6 +279,14 @@ let monthNames = [
 ];
 let monthCount = new Date().getMonth();
 month.textContent = monthNames[monthCount];
+
+window.addEventListener("reload", headerHeight);
+window.addEventListener("resize", headerHeight);
+
+logOutNav.addEventListener("click", async (e) => {
+    e.preventDefault();
+    await logOut();
+});
 
 yearBack.addEventListener("click", () => {
     if(yearCount===2490) {
@@ -360,4 +382,18 @@ fri.forEach((friJr) =>
     })
 );
 
+headerHeight();
 calendarCal(monthCount, yearCount);
+
+if(user) {
+    signUpNav.style.display = "none";
+    logInNav.style.display = "none";
+    logOutNav.style.display = "block";
+    userNav.style.display = "block";
+    userNav.textContent = await user.user.user_metadata.username;
+} else {
+    signUpNav.style.display = "block";
+    logInNav.style.display = "block";
+    logOutNav.style.display = "none";
+    userNav.style.display = "none";
+};
