@@ -1,7 +1,4 @@
-import { logIn } from "./database.js";
-import { logInOtp } from "./database.js";
-import { verifyLogIn } from "./database.js";
-import { userSession } from "./database.js";
+import { logIn, logInOtp, verifyLogIn, userSession, authChange } from "./database.js";
 
 const email = document.getElementById("email");
 const errorEmail = document.getElementById("errorEmail");
@@ -182,8 +179,10 @@ otps.forEach((otp, index) => {
     });
 });
 
-headerHeight();
+authChange(async () => {
+    if(await userSession()) {
+        window.location.href = "../"
+    };
+});
 
-if(await userSession()) {
-    window.location.href = "../"
-};
+headerHeight();

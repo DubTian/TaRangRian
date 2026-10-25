@@ -34,9 +34,10 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
     min-height: 5vh;
     font-family: "Noto Sans Thai";
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 nav{
@@ -50,11 +51,9 @@ nav a{
     border-radius: 5px;
     font-size: 0.8rem;
     font-weight: 400;
+    text-decoration: none;
     color: var(--text_color);
     background-color: var(--second_color);
-    -webkit-tap-highlight-color: transparent;
-    text-decoration: none;
-    user-select: none;
 }
 
 nav a:hover{
@@ -64,6 +63,10 @@ nav a:hover{
 nav a:focus{
     outline: none;
     background-color: var(--haevy_heavy_second);
+}
+
+nav div{
+    display: flex;
 }
 
 main{
@@ -123,18 +126,16 @@ input:focus{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 4.7vh;
+    min-height: 6vh;
     padding: 2% 2%;
     background-color: var(--second_color);
 }
 
 .home{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--text_color);
     text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
+    color: var(--text_color);
 }
 
 .header-line{
@@ -157,7 +158,7 @@ input:focus{
 .submit{
     padding: 0.5rem 0.8rem;
     border: 2px solid var(--first_color);
-    border-radius: 10px;
+    border-radius: 1.5cqh;
     font-family: "Sarabun";
     font-size: 1rem;
     color: var(--hover_second);
@@ -190,47 +191,17 @@ input:focus{
     display: none;
     flex-direction: column;
     align-items: center;
-    padding: 1.5rem 1rem 3rem;
-    font-family: "Noto Sans Thai";
+    padding: 1.5rem 1rem 2rem;
 }
 
 #verifyPage h1{
-    font-size: 1.5rem;
+    font-family: "Noto Sans Thai";
+    font-size: 1.4rem;
     font-weight: 400;
 }
 
-#signUpOtp{
-    display: none;
-}
-
-#signUpOtp p{
-    width: 85%;
-    margin: 0.8rem 0;
-    font-family: "Sarabun";
-    font-size: 0.7rem;
-    opacity: 50%;
-}
-
-#signUpOtp input{
-    aspect-ratio: 1/1;
-}
-
-#otpInput{
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 1fr;
-    column-gap: 0.6rem;
-}
-
-#outSubmitOtp{
-    display: flex;
-    justify-content: center;
-    margin: 2.5rem auto 0.7rem;
-}
-
-#submitOtp{
-    width: 100%;
-    padding: 3% 0;
+#otpAgain{
+    margin-top: 1rem;
 }
 
 @keyframes loading{
@@ -305,35 +276,20 @@ input:focus{
         box-shadow: 0 3px 0 var(--important_color);
     }
     .submit{
-        border-radius: 20px;
+        padding: 0.6rem 1.2rem;
+        font-size: 1.2rem;
     }
     #outSubmit{
         margin: 3.5rem auto 0.8rem;
     }
-    #submit{
-        padding: 0.6rem 1.2rem;
-        font-size: 1.2rem;
-    }
     #verifyPage{
-        padding: 2rem 1.2rem 4.5rem;
+        padding: 2rem 1.2rem 3.5rem;
     }
     #verifyPage h1{
         font-size: 2.5rem;
     }
-    #signUpOtp p{
-        width: 80%;
-        font-size: 1rem;
-        margin: 1.2rem 0;
-    }
-    #otpInput{
-        column-gap: 1.7rem;
-    }
-    #outSubmitOtp{
-        margin: 3.2rem auto 0.7rem;
-    }
-    #submitOtp{
-        padding: 3% 0;
-        font-size: 1.3rem;
+    #otpAgain{
+        margin-top: 1.6rem;
     }
 }
 
@@ -360,32 +316,19 @@ input:focus{
     .home{
         font-size: 2.5rem;
     }
-    #submit{
+    .submit{
         padding: 0.5rem 1.8rem;
         font-size: 1.6rem;
     }
     #verifyPage{
-        padding: 2.3rem 1.2rem 4.6rem;
+        padding: 2.3rem 1.2rem 4.3rem;
     }
     #verifyPage h1{
         font-size: 3rem;
         font-weight: 500;
     }
-    #signUpOtp p{
-        width: 100%;
-        font-size: 1.2rem;
-        margin: 0 0 2rem;
-    }
-    #otpInput{
-        column-gap: 3.2rem;
-    }
-    #outSubmitOtp{
-        margin: 5rem auto 0.7rem;
-    }
-    #submitOtp{
-        width: 97%;
-        padding: 2% 0;
-        font-size: 2rem;
+    #otpAgain{
+        margin-top: 2rem;
     }
 }
 
@@ -441,12 +384,12 @@ input:focus{
     .error-input{
         box-shadow: 0 2px 0 var(--important_color);
     }
-    #outSubmit{
-        margin: 2rem auto 0.9rem;
-    }
-    #submit{
+    .submit{
         padding: 0.5rem 1.5rem;
         font-size: 1.1rem;
+    }
+    #outSubmit{
+        margin: 2rem auto 0.9rem;
     }
     #verifyPage{
         padding: 1rem 1.2rem 2rem;
@@ -455,19 +398,17 @@ input:focus{
         font-size: 2rem;
         font-weight: 500;
     }
-    #signUpOtp p{
-        width: 90%;
-        font-size: 1rem;
-        margin: 1.2rem 0;
-    }
     #otpInput{
         column-gap: 1.2rem;
     }
     #outSubmitOtp{
-        margin: 3.2rem auto 0.7rem;
+        margin: 3.2rem auto 1rem;
     }
     #submitOtp{
         padding: 0.5rem 0;
         font-size: 1.4rem;
+    }
+    #otpAgain{
+        margin-top: 1rem;
     }
 }

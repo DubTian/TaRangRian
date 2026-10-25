@@ -34,9 +34,10 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
     min-height: 5vh;
     font-family: "Noto Sans Thai";
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 nav{
@@ -50,11 +51,9 @@ nav a{
     border-radius: 5px;
     font-size: 0.8rem;
     font-weight: 400;
+    text-decoration: none;
     color: var(--text_color);
     background-color: var(--second_color);
-    -webkit-tap-highlight-color: transparent;
-    text-decoration: none;
-    user-select: none;
 }
 
 nav a:hover{
@@ -64,6 +63,10 @@ nav a:hover{
 nav a:focus{
     outline: none;
     background-color: var(--haevy_heavy_second);
+}
+
+nav div{
+    display: flex;
 }
 
 .header{
@@ -78,10 +81,8 @@ nav a:focus{
 .home{
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--text_color);
     text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
+    color: var(--text_color);
 }
 
 .header-line{
@@ -256,6 +257,13 @@ nav a:focus{
 
 #userNav{
     display: none;
+}
+
+#statusNav{
+    display: none;
+    aspect-ratio: 1/1;
+    height: 2rem;
+    object-fit: contain;
 }
 
 #firstElement{

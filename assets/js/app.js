@@ -1,7 +1,10 @@
-import { logOut } from "./database.js";
-import { classNormal } from "./database.js";
-import { userSession } from "./database.js";
+import { logOut, userSession, authChange, classNormal  } from "./database.js";
 
+const signUpNav = document.getElementById("signUpNav");
+const logInNav = document.getElementById("logInNav");
+const logOutNav = document.getElementById("logOutNav");
+const userNav = document.getElementById("userNav");
+const statusNav = document.getElementById("statusNav");
 const year = document.getElementById("yearValue");
 const month = document.getElementById("monthValue");
 const yearBack = document.getElementById("yearBack");
@@ -10,10 +13,6 @@ const monthBack = document.getElementById("monthBack");
 const monthGo = document.getElementById("monthGo");
 const cell = document.getElementById("cell");
 const classDay = document.getElementById("classDay");
-const signUpNav = document.getElementById("signUpNav");
-const logInNav = document.getElementById("logInNav");
-const logOutNav = document.getElementById("logOutNav");
-const userNav = document.getElementById("userNav");
 
 const dateBlocks = document.querySelectorAll(".date");
 const mon = document.querySelectorAll(".mon");
@@ -146,6 +145,31 @@ const headerHeight = () => {
     document.documentElement.style.setProperty("--header_height", `${height}px`)
 };
 
+const checkUser = async (user) => {
+    if(user) {
+        signUpNav.style.display = "none";
+        logInNav.style.display = "none";
+        logOutNav.style.display = "block";
+        userNav.style.display = "block";
+        userNav.textContent = user.user.user_metadata.username;
+        statusNav.style.display = "block";
+        if(user.user.user_metadata.teacher) {
+            statusNav.src = "./assets/pictures/check.png"
+            statusNav.title = "ยืนยันสถานะครูแล้ว"
+        } else {
+            statusNav.src = "./assets/pictures/cross.png"
+            statusNav.title = "ยังไม่ได้ยืนยันสถานะครู"
+        }
+
+    } else {
+        signUpNav.style.display = "block";
+        logInNav.style.display = "block";
+        logOutNav.style.display = "none";
+        userNav.style.display = "none";
+        statusNav.style.display = "none";
+    };
+} 
+
 const calendarCal = (monthCount, yearCount) => {
     let first = `${yearCount-543}-${monthCount+1}-${1}`;
     let last = `${yearCount-543}-${monthCount+1}-${lastDate(monthCount, yearCount-543)}`;
@@ -224,29 +248,29 @@ const lastDate = (mv, yv) => {
 };
 
 const classLoad = async (dayTh, dayEn, mv, yv) => {
-    for(let i = 1; i<=11; i++) {
-        classes[i-1].subject.innerHTML = "Loading...";
-        classes[i-1].teacher.innerHTML = "Loading...";
-        classes[i-1].room.innerHTML = "Loading...";
-    };
-
-    if((mv<=4 && yv<=2569) || yv<=2568) {
-        for(let i = 1; i<=11; i++) {
-            classes[i-1].subject.innerHTML = "no data";
-            classes[i-1].teacher.innerHTML = "no data";
-            classes[i-1].room.innerHTML = "no data";
-        };
+    for(const classesJr of classes) {
+        classesJr.subject.innerHTML = "&nbsp;";
+        classesJr.teacher.innerHTML = "กำลังโหลด...";
+        classesJr.room.innerHTML = "&nbsp;";
     };
 
     const result = await classNormal(dayEn, termCheck(mv, yv));
     classDay.textContent = dayTh;
 
-    for(let i = 1; i<=11; i++) {
-        classes[i-1].subject.innerHTML = result[0].class[i-1].subject;
-        classes[i-1].teacher.innerHTML = result[0].class[i-1].teacher;
-        classes[i-1].room.innerHTML = result[0].class[i-1].room;
+    if(result[0]) {
+        for(const [i, classesJr] of classes.entries()) {
+            classesJr.subject.innerHTML = result[0].class[i].subject;
+            classesJr.teacher.innerHTML = result[0].class[i].teacher;
+            classesJr.room.innerHTML = result[0].class[i].room;
+        };
+    } else {
+        for(const classesJr of classes) {
+            classesJr.subject.innerHTML = "&nbsp;";
+            classesJr.teacher.innerHTML = "ไม่มีข้อมูล";
+            classesJr.room.innerHTML = "&nbsp;";
+        };
     };
-}
+};
 
 const termCheck = (mv, yv) => {
     if(mv>=4 && mv<=8) {
@@ -256,7 +280,7 @@ const termCheck = (mv, yv) => {
     } else {
         return(`${yv-1}-2`)
     }
-}
+};
 
 const user = await userSession();
 
@@ -347,9 +371,9 @@ dateBlocks.forEach((dateBlock) =>
 );
 
 mon.forEach((monJr) =>
-    monJr.addEventListener("click", () => {
+    monJr.addEventListener("click", async () => {
         if(!monJr.classList.contains("out-month") && !monJr.classList.contains("block-day")) {
-            classLoad("จันทร์", "mon", monthCount, yearCount);
+            await classLoad("จันทร์", "mon", monthCount, yearCount);
         };
     })
 );
@@ -382,18 +406,7 @@ fri.forEach((friJr) =>
     })
 );
 
+authChange(() => checkUser(user));
+
 headerHeight();
 calendarCal(monthCount, yearCount);
-
-if(user) {
-    signUpNav.style.display = "none";
-    logInNav.style.display = "none";
-    logOutNav.style.display = "block";
-    userNav.style.display = "block";
-    userNav.textContent = await user.user.user_metadata.username;
-} else {
-    signUpNav.style.display = "block";
-    logInNav.style.display = "block";
-    logOutNav.style.display = "none";
-    userNav.style.display = "none";
-};

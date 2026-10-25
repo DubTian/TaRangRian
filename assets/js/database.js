@@ -8,6 +8,7 @@ export const signUp = async (username, email, password) => {
         options: {
             data: {
                 username: username.value,
+                teacher: false,
             },
         },
     });
@@ -87,15 +88,10 @@ export const logOut = async () => {
     };
 };
 
-export const userSession = async () => {
-    const { data } = await db.auth.getSession();
-    return(data.session);
-};
-
 export const checkUsernameDb = async (username) => {
     const { data } = await db.from("profiles")
         .select("username")
-        .eq("username", username)
+        .eq("username", username.value)
         .maybeSingle();
 
     if(data) {
@@ -103,11 +99,36 @@ export const checkUsernameDb = async (username) => {
     }
 
     return true;
-}
+};
+
+export const checkEmailDb = async (email) => {
+    const { data } = await db.from("profiles")
+        .select("email")
+        .eq("email", email.value)
+        .maybeSingle();
+
+    if(data) {
+        return false;
+    }
+
+    return true;
+};
+
+export const userSession = async () => {
+    const { data } = await db.auth.getSession();
+    return(data.session);
+};
+
+export const authChange = (callback) => 
+    db.auth.onAuthStateChange(() => {
+        if(typeof callback === "function") {
+            callback();
+        };
+    });
 
 export const classNormal = async (day, term) => {
     const { data, error } = await db.from("classNormalDays")
-        .select("*")
+        .select("class")
         .eq("day", day)
         .eq("term", term);
 
