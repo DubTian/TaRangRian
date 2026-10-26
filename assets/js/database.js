@@ -126,11 +126,11 @@ export const authChange = (callback) =>
         };
     });
 
-export const classNormal = async (day, term) => {
+export const classNormal = async (term) => {
     const { data, error } = await db.from("classNormalDays")
         .select("class")
-        .eq("day", day)
-        .eq("term", term);
+        .eq("term", term)
+        .order("id", {ascending: true})
 
     if(error) {
         console.error("Error", error);

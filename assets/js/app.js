@@ -14,7 +14,7 @@ const monthGo = document.getElementById("monthGo");
 const cell = document.getElementById("cell");
 const classDay = document.getElementById("classDay");
 
-const dateBlocks = document.querySelectorAll(".date");
+const dates = document.querySelectorAll(".date");
 const mon = document.querySelectorAll(".mon");
 const tue = document.querySelectorAll(".tue");
 const wed = document.querySelectorAll(".wed");
@@ -23,126 +23,19 @@ const fri = document.querySelectorAll(".fri");
 
 const header = document.querySelector("header");
 
-const dates = [
-    document.getElementById("date1-1"),
-    document.getElementById("date1-2"),
-    document.getElementById("date1-3"),
-    document.getElementById("date1-4"),
-    document.getElementById("date1-5"),
-    document.getElementById("date1-6"),
-    document.getElementById("date1-7"),
-    document.getElementById("date2-1"),
-    document.getElementById("date2-2"),
-    document.getElementById("date2-3"),
-    document.getElementById("date2-4"),
-    document.getElementById("date2-5"),
-    document.getElementById("date2-6"),
-    document.getElementById("date2-7"),
-    document.getElementById("date3-1"),
-    document.getElementById("date3-2"),
-    document.getElementById("date3-3"),
-    document.getElementById("date3-4"),
-    document.getElementById("date3-5"),
-    document.getElementById("date3-6"),
-    document.getElementById("date3-7"),
-    document.getElementById("date4-1"),
-    document.getElementById("date4-2"),
-    document.getElementById("date4-3"),
-    document.getElementById("date4-4"),
-    document.getElementById("date4-5"),
-    document.getElementById("date4-6"),
-    document.getElementById("date4-7"),
-    document.getElementById("date5-1"),
-    document.getElementById("date5-2"),
-    document.getElementById("date5-3"),
-    document.getElementById("date5-4"),
-    document.getElementById("date5-5"),
-    document.getElementById("date5-6"),
-    document.getElementById("date5-7"),
-    document.getElementById("date6-1"),
-    document.getElementById("date6-2"),
-    document.getElementById("date6-3"),
-    document.getElementById("date6-4"),
-    document.getElementById("date6-5"),
-    document.getElementById("date6-6"),
-    document.getElementById("date6-7")
-];
+const cellTimes = Array.from({length:11}, (_, i) => document.getElementById(`cellTime${i+1}`));
 
-const cellTimes = [
-    document.getElementById("cellTime1"),
-    document.getElementById("cellTime2"),
-    document.getElementById("cellTime3"),
-    document.getElementById("cellTime4"),
-    document.getElementById("cellTime5"),
-    document.getElementById("cellTime6"),
-    document.getElementById("cellTime7"),
-    document.getElementById("cellTime8"),
-    document.getElementById("cellTime9"),
-    document.getElementById("cellTime10"),
-    document.getElementById("cellTime11")
-];
-
-const classes = [
-    {
-        "subject": document.getElementById("class1-1"),
-        "teacher": document.getElementById("class1-2"),
-        "room": document.getElementById("class1-3")
-    },
-    {
-        "subject": document.getElementById("class2-1"),
-        "teacher": document.getElementById("class2-2"),
-        "room": document.getElementById("class2-3")
-    },
-    {
-        "subject": document.getElementById("class3-1"),
-        "teacher": document.getElementById("class3-2"),
-        "room": document.getElementById("class3-3")
-    },
-    {
-        "subject": document.getElementById("class4-1"),
-        "teacher": document.getElementById("class4-2"),
-        "room": document.getElementById("class4-3")
-    },
-    {
-        "subject": document.getElementById("class5-1"),
-        "teacher": document.getElementById("class5-2"),
-        "room": document.getElementById("class5-3")
-    },
-    {
-        "subject": document.getElementById("class6-1"),
-        "teacher": document.getElementById("class6-2"),
-        "room": document.getElementById("class6-3")
-    },
-    {
-        "subject": document.getElementById("class7-1"),
-        "teacher": document.getElementById("class7-2"),
-        "room": document.getElementById("class7-3")
-    },
-    {
-        "subject": document.getElementById("class8-1"),
-        "teacher": document.getElementById("class8-2"),
-        "room": document.getElementById("class8-3")
-    },
-    {
-        "subject": document.getElementById("class9-1"),
-        "teacher": document.getElementById("class9-2"),
-        "room": document.getElementById("class9-3")
-    },
-    {
-        "subject": document.getElementById("class10-1"),
-        "teacher": document.getElementById("class10-2"),
-        "room": document.getElementById("class10-3")
-    },
-    {
-        "subject": document.getElementById("class11-1"),
-        "teacher": document.getElementById("class11-2"),
-        "room": document.getElementById("class11-3")
-    }
-];
+const classes = Array.from({length:11}, (_, i) => {
+    return{
+        subject: document.getElementById(`class${i+1}-1`),
+        teacher: document.getElementById(`class${i+1}-2`),
+        room: document.getElementById(`class${i+1}-3`)
+    };
+});
 
 const headerHeight = () => {
     const height = header.offsetHeight;
-    document.documentElement.style.setProperty("--header_height", `${height}px`)
+    document.documentElement.style.setProperty("--header_height", `${height}px`);
 };
 
 const checkUser = async (user) => {
@@ -154,12 +47,12 @@ const checkUser = async (user) => {
         userNav.textContent = user.user.user_metadata.username;
         statusNav.style.display = "block";
         if(user.user.user_metadata.teacher) {
-            statusNav.src = "./assets/pictures/check.png"
+            statusNav.src = "./assets/pictures/check.webp"
             statusNav.title = "ยืนยันสถานะครูแล้ว"
         } else {
-            statusNav.src = "./assets/pictures/cross.png"
+            statusNav.src = "./assets/pictures/cross.webp"
             statusNav.title = "ยังไม่ได้ยืนยันสถานะครู"
-        }
+        };
 
     } else {
         signUpNav.style.display = "block";
@@ -168,7 +61,7 @@ const checkUser = async (user) => {
         userNav.style.display = "none";
         statusNav.style.display = "none";
     };
-} 
+};
 
 const calendarCal = (monthCount, yearCount) => {
     let first = `${yearCount-543}-${monthCount+1}-${1}`;
@@ -225,9 +118,7 @@ const calendarCal = (monthCount, yearCount) => {
         };
     };
 
-    for(let weekend in weekends) {
-        dates[weekends[weekend]].classList.add("block-day");
-    };
+    weekends.forEach(weekend => dates[weekend].classList.add("block-day"));
 };
 
 const lastDate = (mv, yv) => {
@@ -247,21 +138,20 @@ const lastDate = (mv, yv) => {
     };
 };
 
-const classLoad = async (dayTh, dayEn, mv, yv) => {
+const classLoad = async (dayTh, day) => {
     for(const classesJr of classes) {
         classesJr.subject.innerHTML = "&nbsp;";
         classesJr.teacher.innerHTML = "กำลังโหลด...";
         classesJr.room.innerHTML = "&nbsp;";
     };
 
-    const result = await classNormal(dayEn, termCheck(mv, yv));
     classDay.textContent = dayTh;
 
-    if(result[0]) {
+    if(result[day]) {
         for(const [i, classesJr] of classes.entries()) {
-            classesJr.subject.innerHTML = result[0].class[i].subject;
-            classesJr.teacher.innerHTML = result[0].class[i].teacher;
-            classesJr.room.innerHTML = result[0].class[i].room;
+            classesJr.subject.innerHTML = result[day].class[i].subject;
+            classesJr.teacher.innerHTML = result[day].class[i].teacher;
+            classesJr.room.innerHTML = result[day].class[i].room;
         };
     } else {
         for(const classesJr of classes) {
@@ -281,6 +171,14 @@ const termCheck = (mv, yv) => {
         return(`${yv-1}-2`)
     }
 };
+
+const termChange = async (mv, yv) => {
+    if(term !== termCheck(mv, yv)) {
+        term = termCheck(mv, yv);
+        result = await classNormal(term);
+        console.log("load", term)
+    };
+}
 
 const user = await userSession();
 
@@ -312,26 +210,28 @@ logOutNav.addEventListener("click", async (e) => {
     await logOut();
 });
 
-yearBack.addEventListener("click", () => {
+yearBack.addEventListener("click", async () => {
     if(yearCount===2490) {
         yearCount = new Date().getFullYear()+544;
     } else {
         yearCount--;
     };
     year.textContent = yearCount;
+    await termChange(monthCount, yearCount);
     calendarCal(monthCount, yearCount);
 });
-yearGo.addEventListener("click", () => {
+yearGo.addEventListener("click", async () => {
     if(yearCount===new Date().getFullYear()+544) {
         yearCount = 2490;
     } else {
         yearCount++;
     };
     year.textContent = yearCount;
+    await termChange(monthCount, yearCount);
     calendarCal(monthCount, yearCount);
 });
 
-monthBack.addEventListener("click", () => {
+monthBack.addEventListener("click", async () => {
     if(monthCount===0){
         monthCount = 11;
         if(yearCount===2490) {
@@ -344,9 +244,10 @@ monthBack.addEventListener("click", () => {
         monthCount--
     };
     month.textContent = monthNames[monthCount];
+    await termChange(monthCount, yearCount);
     calendarCal(monthCount, yearCount);
 });
-monthGo.addEventListener("click", () => {
+monthGo.addEventListener("click", async () => {
     if(monthCount===11){
         monthCount = 0;
         if(yearCount===new Date().getFullYear()+544) {
@@ -359,12 +260,13 @@ monthGo.addEventListener("click", () => {
         monthCount++
     };
     month.textContent = monthNames[monthCount];
+    await termChange(monthCount, yearCount);
     calendarCal(monthCount, yearCount);
 });
 
-dateBlocks.forEach((dateBlock) =>
-    dateBlock.addEventListener("click", () => {
-        if(!dateBlock.classList.contains("out-month") && !dateBlock.classList.contains("block-day")) {   
+dates.forEach((date) =>
+    date.addEventListener("click", () => {
+        if(!date.classList.contains("out-month") && !date.classList.contains("block-day")) {   
             cell.style.display = "block";
         };
     })
@@ -373,38 +275,42 @@ dateBlocks.forEach((dateBlock) =>
 mon.forEach((monJr) =>
     monJr.addEventListener("click", async () => {
         if(!monJr.classList.contains("out-month") && !monJr.classList.contains("block-day")) {
-            await classLoad("จันทร์", "mon", monthCount, yearCount);
+            await classLoad("จันทร์", 0);
         };
     })
 );
 tue.forEach((tueJr) =>
     tueJr.addEventListener("click", async () => {
         if(!tueJr.classList.contains("out-month") && !tueJr.classList.contains("block-day")) {
-            classLoad("อังคาร", "tue", monthCount, yearCount);
+            classLoad("อังคาร", 1);
         };
     })
 );
 wed.forEach((wedJr) =>
     wedJr.addEventListener("click", async () => {
         if(!wedJr.classList.contains("out-month") && !wedJr.classList.contains("block-day")) {
-            classLoad("พุธ", "wed", monthCount, yearCount);
+            classLoad("พุธ", 2);
         };
     })
 );
 thu.forEach((thuJr) =>
     thuJr.addEventListener("click", async () => {
         if(!thuJr.classList.contains("out-month") && !thuJr.classList.contains("block-day")) {
-            classLoad("พฤหัสฯ", "thu", monthCount, yearCount);
+            classLoad("พฤหัสฯ", 3);
         };
     })
 );
 fri.forEach((friJr) =>
     friJr.addEventListener("click", async () => {
         if(!friJr.classList.contains("out-month") && !friJr.classList.contains("block-day")) {
-            classLoad("ศุกร์", "fri", monthCount, yearCount);
+            classLoad("ศุกร์", 4);
         };
     })
 );
+
+let term = termCheck(monthCount, yearCount);
+let result = await classNormal(term);
+console.log("load", term)
 
 authChange(() => checkUser(user));
 
