@@ -1,4 +1,4 @@
-import { logIn, logInOtp, verifyLogIn, userSession, authChange } from "./database.js";
+import { logIn, logInOtp, verifyLogIn, authChange } from "./database.js";
 
 const email = document.getElementById("email");
 const errorEmail = document.getElementById("errorEmail");
@@ -17,6 +17,7 @@ const verifyOtp = document.getElementById("verifyOtp");
 const backEmail = document.getElementById("backEmail");
 const submitOtp = document.getElementById("submitOtp");
 
+const inputs = document.querySelectorAll("#logIn input");
 const otps = document.querySelectorAll(".otp");
 
 const header = document.querySelector("header");
@@ -108,7 +109,13 @@ submit.addEventListener("click", async (e) => {
     const passwordChecked = passwordCheck(password);
 
     if(emailChecked && passwordChecked) {
-        await logIn(email, password);
+        main.style.animation = "2s loading linear infinite";
+        if(await logIn(email, password)) {
+            errorPassword.textContent = "*อีเมลหรือรหัสผ่านผิด"
+            errorPassword.style.display = "block";
+            password.classList.add("error-input");
+        };
+        main.style.animation = "";
     };
 });
 
@@ -179,9 +186,20 @@ otps.forEach((otp, index) => {
     });
 });
 
-authChange(async () => {
-    if(await userSession()) {
-        window.location.href = "../"
+inputs.forEach((input, index) =>
+    input.addEventListener("keydown", e => {
+        if(e.key === "Enter") {
+            if(input.value && (index < inputs.length-1)) {
+                e.preventDefault();
+                inputs[index+1].focus();
+            };
+        };
+    })
+);
+
+authChange((event, session) => {
+    if(session) {
+        window.location.href = "../";
     };
 });
 

@@ -43,10 +43,8 @@ export const logIn = async (email, password) => {
 
     if(error) {
         console.error("Error", error);
-        return;
+        return true;
     };
-
-    window.location.href = "../";
 };
 
 export const logInOtp = async (emailOtp) => {
@@ -89,29 +87,27 @@ export const logOut = async () => {
 };
 
 export const checkUsernameDb = async (username) => {
-    const { data } = await db.from("profiles")
-        .select("username")
-        .eq("username", username.value)
-        .maybeSingle();
+    const { data } = await db.rpc("check_username", {
+        p_username: username.value,
+    });
 
     if(data) {
         return false;
-    }
-
-    return true;
+    } else {
+        return true;
+    };
 };
 
 export const checkEmailDb = async (email) => {
-    const { data } = await db.from("profiles")
-        .select("email")
-        .eq("email", email.value)
-        .maybeSingle();
+    const { data } = await db.rpc("check_email", {
+        p_email: email.value,
+    });
 
     if(data) {
         return false;
-    }
-
-    return true;
+    } else {
+        return true;
+    };
 };
 
 export const userSession = async () => {
@@ -120,9 +116,9 @@ export const userSession = async () => {
 };
 
 export const authChange = (callback) => 
-    db.auth.onAuthStateChange(() => {
+    db.auth.onAuthStateChange((event, session) => {
         if(typeof callback === "function") {
-            callback();
+            callback(event, session);
         };
     });
 

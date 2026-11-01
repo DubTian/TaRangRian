@@ -1,4 +1,4 @@
-import { signUp, userSession, checkUsernameDb, checkEmailDb, authChange } from "./database.js";
+import { signUp, checkUsernameDb, checkEmailDb, authChange } from "./database.js";
 
 const formSignUp = document.getElementById("signUp");
 const username = document.getElementById("username");
@@ -138,6 +138,7 @@ submit.addEventListener("click", async (e) => {
     if(usernameChecked && emailChecked && passwordChecked && passwordAgainChecked) {
         main.style.animation = "2s loading linear infinite";
         if(await signUp(username, email, password)) {
+            formSignUp.style.display = "none"
             verifyPage.style.display = "flex";
         };
         main.style.animation = "";
@@ -159,10 +160,10 @@ inputs.forEach((input, index) =>
     })
 );
 
-authChange(async () => {
-    if(await userSession()) {
-        window.location.href = "../"
+authChange((event, session) => {
+    if(session) {
+        window.location.href = "../";
     };
-})
+});
 
 headerHeight();

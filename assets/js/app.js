@@ -1,4 +1,4 @@
-import { logOut, userSession, authChange, classNormal  } from "./database.js";
+import { logOut, authChange, classNormal  } from "./database.js";
 
 const signUpNav = document.getElementById("signUpNav");
 const logInNav = document.getElementById("logInNav");
@@ -38,28 +38,29 @@ const headerHeight = () => {
     document.documentElement.style.setProperty("--header_height", `${height}px`);
 };
 
-const checkUser = async (user) => {
-    if(user) {
-        signUpNav.style.display = "none";
-        logInNav.style.display = "none";
-        logOutNav.style.display = "block";
-        userNav.style.display = "block";
-        userNav.textContent = user.user.user_metadata.username;
-        statusNav.style.display = "block";
-        if(user.user.user_metadata.teacher) {
-            statusNav.src = "./assets/pictures/check.webp"
-            statusNav.title = "ยืนยันสถานะครูแล้ว"
-        } else {
-            statusNav.src = "./assets/pictures/cross.webp"
-            statusNav.title = "ยังไม่ได้ยืนยันสถานะครู"
-        };
-
-    } else {
+const checkUser = session => {
+    if(session === null) {
         signUpNav.style.display = "block";
         logInNav.style.display = "block";
         logOutNav.style.display = "none";
+        verifyNav.style.display = "none";
         userNav.style.display = "none";
         statusNav.style.display = "none";
+    } else {
+        signUpNav.style.display = "none";
+        logInNav.style.display = "none";
+        logOutNav.style.display = "block";
+        verifyNav.style.display = "block";
+        userNav.style.display = "block";
+        userNav.textContent = session.user.user_metadata.username;
+        statusNav.style.display = "block";
+        if(session.user.user_metadata.teacher) {
+            statusNav.src = "../assets/pictures/check.webp"
+            statusNav.title = "ยืนยันสถานะครูแล้ว"
+        } else {
+            statusNav.src = "../assets/pictures/cross.webp"
+            statusNav.title = "ยังไม่ได้ยืนยันสถานะครู"
+        };
     };
 };
 
@@ -179,8 +180,6 @@ const termChange = async (mv, yv) => {
         console.log("load", term)
     };
 }
-
-const user = await userSession();
 
 let yearCount = new Date().getFullYear()+543;
 year.textContent = yearCount;
@@ -310,9 +309,7 @@ fri.forEach((friJr) =>
 
 let term = termCheck(monthCount, yearCount);
 let result = await classNormal(term);
-console.log("load", term)
 
-authChange(() => checkUser(user));
-
+authChange((event, session) => checkUser(session));
 headerHeight();
 calendarCal(monthCount, yearCount);

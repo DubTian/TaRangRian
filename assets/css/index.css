@@ -255,6 +255,10 @@ nav div{
     display: none;
 }
 
+#verifyNav{
+    display: none;
+}
+
 #userNav{
     display: none;
 }
@@ -482,7 +486,6 @@ nav div{
         grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1.5fr) 4fr;
     }
-
     #fixButton button{
         min-width: 15%;
         border-radius: 10px;
@@ -570,7 +573,7 @@ nav div{
         min-height: 10vh;
     }
     .calendar-block{
-        outline: 0.2vw solid var(--first_color);
+        outline: 2.5px solid var(--first_color);
     }
     .day-name{
         font-size: 1.1rem;
@@ -594,10 +597,10 @@ nav div{
         font-weight: 300;
     }
     .cell-hour{
-        font-size: 1.3rem;
+        font-size: clamp(1.3rem, 1.52vw, 1.5rem);
     }
     .cell-time{
-        font-size: 1rem;
+        font-size: clamp(1rem, 1.17vw, 1.3rem);
     }
     #firstElement{
         margin-top: calc(var(--header_height) + 1rem);
@@ -609,16 +612,19 @@ nav div{
         font-size: 2.6rem;
     }
     #outCalendar{
-        margin: 0 4rem 2rem;
+        margin: 0 6rem;
+    }
+    #calendar{
+        grid-template-rows: 0.8fr repeat(6, 2.1fr);
     }
     #cellLine{
-        width: 94%;
+        width: 91vw;
         height: 0.3vh;
         margin: 4rem auto;
     }
     #cell{
-        margin: 0 4rem 3rem;
-        font-size: 1rem;
+        margin: 0 6rem 3rem;
+        font-size: clamp(1rem, 1.17vw, 1.3rem);
     }
     #cellHeader{
         margin-bottom: 3rem;
