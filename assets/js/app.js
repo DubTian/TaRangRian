@@ -1,4 +1,4 @@
-import { logOut, authChange, classNormal  } from "./database.js";
+import { logOut, authChange, classNormal, checkTeacherDb } from "./database.js";
 
 const signUpNav = document.getElementById("signUpNav");
 const logInNav = document.getElementById("logInNav");
@@ -38,7 +38,7 @@ const headerHeight = () => {
     document.documentElement.style.setProperty("--header_height", `${height}px`);
 };
 
-const checkUser = session => {
+const checkUser = async (session) => {
     if(session === null) {
         signUpNav.style.display = "block";
         logInNav.style.display = "block";
@@ -54,7 +54,7 @@ const checkUser = session => {
         userNav.style.display = "block";
         userNav.textContent = session.user.user_metadata.username;
         statusNav.style.display = "block";
-        if(session.user.user_metadata.teacher) {
+        if(await checkTeacherDb()) {
             statusNav.src = "../assets/pictures/check.webp"
             statusNav.title = "ยืนยันสถานะครูแล้ว"
         } else {

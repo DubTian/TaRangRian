@@ -8,7 +8,6 @@ export const signUp = async (username, email, password) => {
         options: {
             data: {
                 username: username.value,
-                teacher: false,
             },
         },
     });
@@ -107,6 +106,16 @@ export const checkEmailDb = async (email) => {
         return false;
     } else {
         return true;
+    };
+};
+
+export const checkTeacherDb = async () => {
+    const { data, error } = await db.rpc("check_teacher");
+
+    if(error) {
+        console.error("Error", error);
+    } else {
+        return(data);
     };
 };
 

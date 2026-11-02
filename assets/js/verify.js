@@ -1,4 +1,4 @@
-import { logOut, authChange } from "./database.js";
+import { logOut, authChange, checkTeacherDb } from "./database.js";
 
 const logOutNav = document.getElementById("logOutNav");
 const userNav = document.getElementById("userNav");
@@ -10,8 +10,8 @@ const headerHeight = () => {
     document.documentElement.style.setProperty("--header_height", `${height}px`)
 };
 
-const checkUser = session => {
-    if(session === null || session.user.user_metadata.teacher) {
+const checkUser = async (session) => {
+    if(session === null || await checkTeacherDb()) {
         window.location.href = "../"
     } else {
         userNav.textContent = session.user.user_metadata.username;
