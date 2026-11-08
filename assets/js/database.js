@@ -119,6 +119,19 @@ export const checkTeacherDb = async () => {
     };
 };
 
+export const verifyTeacherDb = async (password) => {
+    const { data, error } = await db.rpc("verify_teacher", {
+        p_password: password.value,
+    });
+
+    if(error) {
+        console.error("Error", error);
+    } else {
+        console.log(data)
+        return(data);
+    };
+};
+
 export const userSession = async () => {
     const { data } = await db.auth.getSession();
     return(data.session);

@@ -303,10 +303,6 @@ input:focus{
     header{
         min-height: 7.5vh;
     }
-    nav{
-        width: 40%;
-        border-radius: 10px;
-    }
     nav a{
         padding: 0.3rem 1rem;
         font-size: 1.5rem;
@@ -453,9 +449,6 @@ input:focus{
 @media(min-width: 1280px){
     header{
         min-height: 0vh;
-    }
-    nav{
-        width: 30%;
     }
     nav a{
         padding: 0.3rem 1rem;

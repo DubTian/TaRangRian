@@ -153,14 +153,14 @@ submitOtp.addEventListener("click", async (e) => {
     e.preventDefault();
     main.style.animation = "2s loading linear infinite";
     if(await verifyLogIn(emailOtp, otpSum())) {
-        window.location.href = "../"
+        window.location.href = "../";
     };
     main.style.animation = "";
 });
 
 otps.forEach((otp, index) => {
     otp.addEventListener("input", () => {
-        otp.value = otp.value.replace(/[^\d]/g, "")
+        otp.value = otp.value.replace(/[^\d]/g, "");
         if(otp.value && index<otps.length-1) {
             otps[index+1].focus();
         };
@@ -197,10 +197,9 @@ inputs.forEach((input, index) =>
     })
 );
 
+headerHeight();
 authChange((event, session) => {
     if(session) {
         window.location.href = "../";
     };
 });
-
-headerHeight();

@@ -160,10 +160,9 @@ inputs.forEach((input, index) =>
     })
 );
 
+headerHeight();
 authChange((event, session) => {
     if(session) {
         window.location.href = "../";
     };
 });
-
-headerHeight();

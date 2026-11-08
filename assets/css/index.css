@@ -266,7 +266,7 @@ nav div{
 #statusNav{
     display: none;
     aspect-ratio: 1/1;
-    height: 2rem;
+    height: 0.8rem;
     object-fit: contain;
 }
 
@@ -348,16 +348,20 @@ nav div{
 }
 
 #fixButton{
-    display: flex;
+    display: none;
     justify-content: center;
 }
 
 #fixButton button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 12%;
+    padding: 0.25rem;
     border: none;
     border-radius: 5px;
-    padding: 0.25rem;
     margin-top: 2.5rem;
+    gap: 0 0.25em;
     font-family: "Sarabun";
     font-size: 0.8rem;
     font-weight: 200;
@@ -374,12 +378,15 @@ nav div{
     opacity: 50%;
 }
 
+#fixButton img{
+    aspect-ratio: 1/1;
+    height: 1.07rem;
+    object-fit: contain;
+}
+
 @media(min-width: 768px){
     header{
         min-height: 7.5vh;
-    }
-    nav{
-        border-radius: 10px;
     }
     nav a{
         padding: 0.3rem 1rem;
@@ -442,6 +449,9 @@ nav div{
     .cell-time{
         font-size: 0.5rem;
     }
+    #statusNav{
+        height: 2rem;
+    }
     #firstElement{
         margin-top: calc(var(--header_height) + 0.8rem);
     }
@@ -493,6 +503,9 @@ nav div{
         margin-top: 3rem;
         font-size: 1.5rem;
     }
+    #fixButton img{
+        height: 2rem;
+    }
 }
 
 @media(min-width: 1024px){
@@ -515,6 +528,9 @@ nav div{
     }
     .cell-time{
         font-size: 0.75rem;
+    }
+    #statusNav{
+        height: 2.27rem;
     }
     #first_Element{
         margin-top: calc(var(--header_height) + 1.5rem);
@@ -566,7 +582,7 @@ nav div{
         font-size: 2rem;
     }
     .descrip{
-        font-size: 1.2rem;
+        font-size: clamp(1.2rem, 1.41vw, 1.5rem);
     }
     .set-calendar{
         width: 90%;
@@ -602,8 +618,11 @@ nav div{
     .cell-time{
         font-size: clamp(1rem, 1.17vw, 1.3rem);
     }
+    #statusNav{
+        height: 2rem;
+    }
     #firstElement{
-        margin-top: calc(var(--header_height) + 1rem);
+        margin-top: calc(var(--header_height) + clamp(1rem, 1.17vw, 1.5rem));
     }
     #year h4{
         font-size: 2.6rem;
@@ -634,12 +653,8 @@ nav div{
         grid-template-rows: repeat(2, 1.2fr) 2.5fr;
     }
     #fixButton button{
-        min-width: 15%;
-        border-radius: 10px;
-        padding: 0.3rem;
-        margin-top: 6rem;
-        font-size: 1.5rem;
-        font-weight: 300;
+        padding: 0.4rem;
+        font-size: 1.7rem;
         transition: transform 0.1s ease-out;
     }
     #fixButton button:hover{
@@ -648,5 +663,8 @@ nav div{
     #fixButton button:active{
         transform: scale(1.1);
         opacity: 50%;
+    }
+    #fixButton img{
+        height: 2.27rem;
     }
 }

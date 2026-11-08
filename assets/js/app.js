@@ -13,6 +13,7 @@ const monthBack = document.getElementById("monthBack");
 const monthGo = document.getElementById("monthGo");
 const cell = document.getElementById("cell");
 const classDay = document.getElementById("classDay");
+const fixButton = document.getElementById("fixButton");
 
 const dates = document.querySelectorAll(".date");
 const mon = document.querySelectorAll(".mon");
@@ -50,18 +51,33 @@ const checkUser = async (session) => {
         signUpNav.style.display = "none";
         logInNav.style.display = "none";
         logOutNav.style.display = "block";
+<<<<<<< HEAD
+=======
         verifyNav.style.display = "block";
+>>>>>>> 7c9573dfcecb80d9b48593cab040214d3b304b39
         userNav.style.display = "block";
         userNav.textContent = session.user.user_metadata.username;
         statusNav.style.display = "block";
         if(await checkTeacherDb()) {
+<<<<<<< HEAD
+            verifyNav.style.display = "none";
+            statusNav.src = "../assets/pictures/check.webp";
+            statusNav.title = "ยืนยันสถานะครูแล้ว";
+            fixButton.style.display = "flex";
+        } else {
+            verifyNav.style.display = "block";
+            statusNav.src = "../assets/pictures/cross.webp";
+            statusNav.title = "ยังไม่ได้ยืนยันสถานะครู";
+=======
             statusNav.src = "../assets/pictures/check.webp"
             statusNav.title = "ยืนยันสถานะครูแล้ว"
         } else {
             statusNav.src = "../assets/pictures/cross.webp"
             statusNav.title = "ยังไม่ได้ยืนยันสถานะครู"
+>>>>>>> 7c9573dfcecb80d9b48593cab040214d3b304b39
         };
     };
+    console.log("end")
 };
 
 const calendarCal = (monthCount, yearCount) => {
@@ -274,7 +290,7 @@ dates.forEach((date) =>
 mon.forEach((monJr) =>
     monJr.addEventListener("click", async () => {
         if(!monJr.classList.contains("out-month") && !monJr.classList.contains("block-day")) {
-            await classLoad("จันทร์", 0);
+            classLoad("จันทร์", 0);
         };
     })
 );
@@ -313,3 +329,4 @@ let result = await classNormal(term);
 authChange((event, session) => checkUser(session));
 headerHeight();
 calendarCal(monthCount, yearCount);
+authChange((event, session) => checkUser(session));
