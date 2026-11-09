@@ -59,12 +59,12 @@ const checkUser = async (session) => {
         statusNav.style.display = "block";
         if(await checkTeacherDb()) {
             verifyNav.style.display = "none";
-            statusNav.src = "../assets/pictures/check.webp";
+            statusNav.src = "./assets/pictures/check.webp";
             statusNav.title = "ยืนยันสถานะครูแล้ว";
             fixButton.style.display = "flex";
         } else {
             verifyNav.style.display = "block";
-            statusNav.src = "../assets/pictures/cross.webp";
+            statusNav.src = "./assets/pictures/cross.webp";
             statusNav.title = "ยังไม่ได้ยืนยันสถานะครู";
         };
     };
