@@ -14,6 +14,9 @@ const monthGo = document.getElementById("monthGo");
 const cell = document.getElementById("cell");
 const classDay = document.getElementById("classDay");
 const fixButton = document.getElementById("fixButton");
+const overlay = document.getElementById("overlay");
+const verifyNoti = document.getElementById("verifyNoti");
+const clossNoti = document.getElementById("clossNoti");
 
 const dates = document.querySelectorAll(".date");
 const mon = document.querySelectorAll(".mon");
@@ -52,16 +55,16 @@ const checkUser = async (session) => {
         logInNav.style.display = "none";
         logOutNav.style.display = "block";
         userNav.style.display = "block";
-        userNav.textContent = session.user.user_metadata.username;
+        userNav.textContent = session.user.user_metadata.username;  
         statusNav.style.display = "block";
         if(await checkTeacherDb()) {
             verifyNav.style.display = "none";
-            statusNav.src = "../assets/pictures/check.webp";
+            statusNav.src = "./assets/pictures/check.webp";
             statusNav.title = "ยืนยันสถานะครูแล้ว";
             fixButton.style.display = "flex";
         } else {
             verifyNav.style.display = "block";
-            statusNav.src = "../assets/pictures/cross.webp";
+            statusNav.src = "./assets/pictures/cross.webp";
             statusNav.title = "ยังไม่ได้ยืนยันสถานะครู";
         };
     };
@@ -266,6 +269,24 @@ monthGo.addEventListener("click", async () => {
     calendarCal(monthCount, yearCount);
 });
 
+fixButton.addEventListener("click", async () => {
+    if(await checkTeacherDb()) {
+        return;
+    } else {
+        overlay.style.display = "block";
+        verifyNoti.style.animation = "none";
+        verifyNoti.offsetHeight;
+        verifyNoti.style.animation = "push-noti 0.2s ease-out forwards";
+    };
+});
+
+clossNoti.addEventListener("click", () => {
+    overlay.style.display = "none";
+    verifyNoti.style.animation = "none";
+    verifyNoti.offsetHeight;
+    verifyNoti.style.animation = "out-noti 0.2s ease-in forwards";
+})
+
 dates.forEach((date) =>
     date.addEventListener("click", () => {
         if(!date.classList.contains("out-month") && !date.classList.contains("block-day")) {   
@@ -313,7 +334,6 @@ fri.forEach((friJr) =>
 let term = termCheck(monthCount, yearCount);
 let result = await classNormal(term);
 
-authChange((event, session) => checkUser(session));
 headerHeight();
 calendarCal(monthCount, yearCount);
 authChange((event, session) => checkUser(session));

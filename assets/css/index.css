@@ -79,7 +79,7 @@ nav div{
 }
 
 .home{
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     text-decoration: none;
     color: var(--text_color);
@@ -350,17 +350,12 @@ nav div{
 #fixButton{
     display: none;
     justify-content: center;
-}
-
-#fixButton button{
-    display: flex;
-    justify-content: center;
     align-items: center;
     min-width: 12%;
     padding: 0.25rem;
     border: none;
     border-radius: 5px;
-    margin-top: 2.5rem;
+    margin: 2.5rem auto 0;
     gap: 0 0.25em;
     font-family: "Sarabun";
     font-size: 0.8rem;
@@ -373,7 +368,7 @@ nav div{
     -webkit-tap-highlight-color: transparent;
 }
 
-#fixButton button:active{
+#fixButton:active{
     transform: scale(0.9);
     opacity: 50%;
 }
@@ -382,6 +377,64 @@ nav div{
     aspect-ratio: 1/1;
     height: 1.07rem;
     object-fit: contain;
+}
+
+#overlay{
+    z-index: 1;
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--text_color);
+    opacity: 0.4;
+}
+
+#verifyNoti{
+    z-index: 2;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0);
+    padding: 3rem 2rem;
+    border: var(--first_color) solid 3px;
+    border-radius: 5px;
+    font-family: "Noto Sans Thai";
+    font-size: 1.5rem;
+    white-space: nowrap;
+    color: var(--text_color);
+    background-color: var(--second_color);
+}
+
+#clossNoti{
+    position: absolute;
+    top: 2%;
+    right: 4%;
+    outline: none;
+    border: none;
+    font-size: 1.8rem;
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes push-noti{
+    0%{
+        transform: translateX(-50%) translateY(-50%) scale(0); 
+    }
+    100%{
+        transform: translateX(-50%) translateY(-50%) scale(1); 
+    }
+}
+
+@keyframes out-noti{
+    0%{
+        transform: translateX(-50%) translateY(-50%) scale(1); 
+    }
+    100%{
+        transform: translateX(-50%) translateY(-50%) scale(0); 
+    }
 }
 
 @media(min-width: 768px){
@@ -496,7 +549,7 @@ nav div{
         grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1.5fr) 4fr;
     }
-    #fixButton button{
+    #fixButton{
         min-width: 15%;
         border-radius: 10px;
         padding: 0.3rem;
@@ -505,6 +558,14 @@ nav div{
     }
     #fixButton img{
         height: 2rem;
+    }
+    #verifyNoti{
+        padding: 4rem 4rem;
+        border-radius: 10px;
+        font-size: 3rem;
+    }
+    #clossNoti{
+        font-size: 2.5rem;
     }
 }
 
@@ -560,7 +621,7 @@ nav div{
         grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1fr) 2fr;
     }
-    #fixButton button{
+    #fixButton{
         margin-top: 6rem;
         font-weight: 300;
     }
@@ -652,19 +713,27 @@ nav div{
         grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1.2fr) 2.5fr;
     }
-    #fixButton button{
+    #fixButton{
         padding: 0.4rem;
         font-size: 1.7rem;
         transition: transform 0.1s ease-out;
     }
-    #fixButton button:hover{
+    #fixButton:hover{
         transform: scale(1.2);
     }
-    #fixButton button:active{
+    #fixButton:active{
         transform: scale(1.1);
         opacity: 50%;
     }
     #fixButton img{
         height: 2.27rem;
+    }
+    #verifyNoti{
+        padding: 2.5rem 3rem;
+        border-radius: 10px;
+        font-size: 2.2rem;
+    }
+    #clossNoti{
+        font-size: 1.8rem;
     }
 }
