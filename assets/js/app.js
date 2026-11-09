@@ -51,15 +51,10 @@ const checkUser = async (session) => {
         signUpNav.style.display = "none";
         logInNav.style.display = "none";
         logOutNav.style.display = "block";
-<<<<<<< HEAD
-=======
-        verifyNav.style.display = "block";
->>>>>>> 7c9573dfcecb80d9b48593cab040214d3b304b39
         userNav.style.display = "block";
         userNav.textContent = session.user.user_metadata.username;
         statusNav.style.display = "block";
         if(await checkTeacherDb()) {
-<<<<<<< HEAD
             verifyNav.style.display = "none";
             statusNav.src = "../assets/pictures/check.webp";
             statusNav.title = "ยืนยันสถานะครูแล้ว";
@@ -68,16 +63,8 @@ const checkUser = async (session) => {
             verifyNav.style.display = "block";
             statusNav.src = "../assets/pictures/cross.webp";
             statusNav.title = "ยังไม่ได้ยืนยันสถานะครู";
-=======
-            statusNav.src = "../assets/pictures/check.webp"
-            statusNav.title = "ยืนยันสถานะครูแล้ว"
-        } else {
-            statusNav.src = "../assets/pictures/cross.webp"
-            statusNav.title = "ยังไม่ได้ยืนยันสถานะครู"
->>>>>>> 7c9573dfcecb80d9b48593cab040214d3b304b39
         };
     };
-    console.log("end")
 };
 
 const calendarCal = (monthCount, yearCount) => {
