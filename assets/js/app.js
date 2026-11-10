@@ -12,12 +12,15 @@ const yearGo = document.getElementById("yearGo");
 const monthBack = document.getElementById("monthBack");
 const monthGo = document.getElementById("monthGo");
 const cell = document.getElementById("cell");
+const dateCellHeader = document.getElementById("dateCellHeader");
 const classDay = document.getElementById("classDay");
 const fixButton = document.getElementById("fixButton");
+const submitFix = document.getElementById("submitFix");
 const overlay = document.getElementById("overlay");
 const verifyNoti = document.getElementById("verifyNoti");
 const clossNoti = document.getElementById("clossNoti");
 
+const cellClasses = document.querySelectorAll(".cell-class");
 const dates = document.querySelectorAll(".date");
 const mon = document.querySelectorAll(".mon");
 const tue = document.querySelectorAll(".tue");
@@ -61,7 +64,9 @@ const checkUser = async (session) => {
             verifyNav.style.display = "none";
             statusNav.src = "./assets/pictures/check.webp";
             statusNav.title = "ยืนยันสถานะครูแล้ว";
-            fixButton.style.display = "flex";
+            if(!fixMode) {
+                fixButton.style.display = "flex";
+            }
         } else {
             verifyNav.style.display = "block";
             statusNav.src = "./assets/pictures/cross.webp";
@@ -271,7 +276,22 @@ monthGo.addEventListener("click", async () => {
 
 fixButton.addEventListener("click", async () => {
     if(await checkTeacherDb()) {
-        return;
+        fixMode = true;
+        fixButton.style.display = "none";
+        submitFix.style.display = "flex";
+
+        for(const cellClass of cellClasses) {
+            cellClass.style.cursor = "pointer"
+            cellClass.style.backgroundColor = "var(--soft_soft_important)"
+            cellClass.addEventListener("click", () => {
+                for(const cellClass of cellClasses) {
+                    cellClass.style.backgroundColor = "var(--soft_soft_important)";
+                    cellClass.style.boxShadow = "none";
+                };
+                cellClass.style.backgroundColor = "var(--soft_important)";
+                cellClass.style.boxShadow = "0 0 1.5rem 0.5rem var(--soft_important)";
+            });
+        };
     } else {
         overlay.style.display = "block";
         verifyNoti.style.animation = "none";
@@ -298,6 +318,7 @@ dates.forEach((date) =>
 mon.forEach((monJr) =>
     monJr.addEventListener("click", async () => {
         if(!monJr.classList.contains("out-month") && !monJr.classList.contains("block-day")) {
+            dateCellHeader.innerHTML = `&nbsp;จ.&nbsp;${monJr.textContent}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
             classLoad("จันทร์", 0);
         };
     })
@@ -305,6 +326,7 @@ mon.forEach((monJr) =>
 tue.forEach((tueJr) =>
     tueJr.addEventListener("click", async () => {
         if(!tueJr.classList.contains("out-month") && !tueJr.classList.contains("block-day")) {
+            dateCellHeader.innerHTML = `&nbsp;อ.&nbsp;${tueJr.textContent}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
             classLoad("อังคาร", 1);
         };
     })
@@ -312,6 +334,7 @@ tue.forEach((tueJr) =>
 wed.forEach((wedJr) =>
     wedJr.addEventListener("click", async () => {
         if(!wedJr.classList.contains("out-month") && !wedJr.classList.contains("block-day")) {
+            dateCellHeader.innerHTML = `&nbsp;พ.&nbsp;${wedJr.textContent}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
             classLoad("พุธ", 2);
         };
     })
@@ -319,6 +342,7 @@ wed.forEach((wedJr) =>
 thu.forEach((thuJr) =>
     thuJr.addEventListener("click", async () => {
         if(!thuJr.classList.contains("out-month") && !thuJr.classList.contains("block-day")) {
+            dateCellHeader.innerHTML = `&nbsp;พฤ.&nbsp;${thuJr.textContent}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
             classLoad("พฤหัสฯ", 3);
         };
     })
@@ -326,6 +350,7 @@ thu.forEach((thuJr) =>
 fri.forEach((friJr) =>
     friJr.addEventListener("click", async () => {
         if(!friJr.classList.contains("out-month") && !friJr.classList.contains("block-day")) {
+            dateCellHeader.innerHTML = `&nbsp;ศ.&nbsp;${friJr.textContent}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
             classLoad("ศุกร์", 4);
         };
     })
@@ -333,6 +358,7 @@ fri.forEach((friJr) =>
 
 let term = termCheck(monthCount, yearCount);
 let result = await classNormal(term);
+let fixMode = false;
 
 headerHeight();
 calendarCal(monthCount, yearCount);

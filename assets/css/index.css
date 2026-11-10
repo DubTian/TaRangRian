@@ -11,10 +11,13 @@
     --text_color: #000000;
     --hover_second: #ffffff;
     --important_color: #FF1229;
+    --submit_color: #3BFA1E;
     --soft_first: #CFD2D4;
     --heavy_first: #282D33;
     --heavy_second: #DEE2E3;
     --haevy_heavy_second: #D2D5D6;
+    --soft_important: #FF3044;
+    --soft_soft_important: #FF4A5C;
     --heavy_important: #A3121E;
     --button_active: #D4D4D4;
 
@@ -195,7 +198,7 @@ nav div{
     height: 100%;
     font-size: 1rem;
     background-color: var(--button_active);
-    box-shadow:  none;
+    box-shadow: none;
 }
 
 .block-day{
@@ -249,6 +252,47 @@ nav div{
 
 .cell-time{
     font-size: 0.25rem;
+}
+
+.cell-class{
+    transition:
+        background-color 0.15s ease-out,
+        box-shadow 0.08s ease-out;
+}
+
+.class-type{
+    cursor: pointer;
+}
+
+.button{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    min-width: 12%;
+    padding: 0.3rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    margin: 2rem auto 0;
+    gap: 0 0.25em;
+    font-family: "Sarabun";
+    font-size: 0.8rem;
+    font-weight: 200;
+    letter-spacing: 0.05rem;
+    color: var(--hover_second);
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.button:active{
+    transform: scale(0.9);
+    opacity: 50%;
+}
+
+.button img{
+    aspect-ratio: 1/1;
+    height: 1.07rem;
+    object-fit: contain;
 }
 
 #logOutNav{
@@ -347,36 +391,35 @@ nav div{
     width: 100%;
 }
 
-#fixButton{
-    display: none;
+#classTypeForm{
+    display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 12%;
-    padding: 0.25rem;
-    border: none;
-    border-radius: 5px;
-    margin: 2.5rem auto 0;
-    gap: 0 0.25em;
-    font-family: "Sarabun";
-    font-size: 0.8rem;
-    font-weight: 200;
-    letter-spacing: 0.05rem;
-    color: var(--hover_second);
-    background: transparent;
-    background-color: var(--important_color);
-    cursor: pointer;
+    margin: 1.3em 0 0;
+    gap: 0.8em;
+    font-size: 1rem;
+    font-weight: 300;
     -webkit-tap-highlight-color: transparent;
 }
 
-#fixButton:active{
-    transform: scale(0.9);
-    opacity: 50%;
+#classTypeForm div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3em;
 }
 
-#fixButton img{
-    aspect-ratio: 1/1;
-    height: 1.07rem;
-    object-fit: contain;
+#classTypeForm label{
+    cursor: pointer;
+}
+
+#fixButton{
+    background-color: var(--important_color);
+}
+
+#submitFix{
+    color: var(--text_color);
+    background-color: var(--submit_color);
 }
 
 #overlay{
@@ -502,11 +545,22 @@ nav div{
     .cell-time{
         font-size: 0.5rem;
     }
+    .button{
+        min-width: 15%;
+        border-radius: 10px;
+        padding: 0.6rem 2.5rem;
+        margin-top: 3rem;
+        font-size: 1.5rem;
+        font-weight: 300;
+    }
+    .button img{
+        height: 2rem;
+    }
     #statusNav{
         height: 2rem;
     }
     #firstElement{
-        margin-top: calc(var(--header_height) + 0.8rem);
+        margin-top: calc(var(--header_height) + 1rem);
     }
     #outCalendar{
         min-height: 0;
@@ -549,15 +603,8 @@ nav div{
         grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1.5fr) 4fr;
     }
-    #fixButton{
-        min-width: 15%;
-        border-radius: 10px;
-        padding: 0.3rem;
-        margin-top: 3rem;
-        font-size: 1.5rem;
-    }
-    #fixButton img{
-        height: 2rem;
+    #classTypeForm{
+        font-size: 1.4rem;
     }
     #verifyNoti{
         padding: 4rem 4rem;
@@ -590,6 +637,11 @@ nav div{
     .cell-time{
         font-size: 0.75rem;
     }
+    .button{
+        padding: 0.8rem 3rem;
+        margin-top: 5rem;
+        font-weight: 400;
+    }
     #statusNav{
         height: 2.27rem;
     }
@@ -617,13 +669,15 @@ nav div{
     #cellHeader{
         margin-bottom: 2rem;
     }
+    #cellHeader h4{
+        font-size: 1.9rem;
+    }
     #classCell{
         grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1fr) 2fr;
     }
-    #fixButton{
-        margin-top: 6rem;
-        font-weight: 300;
+    #classTypeForm{
+        font-size: 1.7rem;
     }
 }
 
@@ -679,6 +733,21 @@ nav div{
     .cell-time{
         font-size: clamp(1rem, 1.17vw, 1.3rem);
     }
+    .button{
+        padding: 0.4rem 2.5rem;
+        font-size: 1.7rem;
+        transition: transform 0.1s ease-out;
+    }
+    .button:hover{
+        transform: scale(1.2);
+    }
+    .button:active{
+        transform: scale(1.1);
+        opacity: 50%;
+    }
+    .button img{
+        height: 2.27rem;
+    }
     #statusNav{
         height: 2rem;
     }
@@ -713,20 +782,8 @@ nav div{
         grid-template-columns: 2.5fr repeat(11, 3.5fr);
         grid-template-rows: repeat(2, 1.2fr) 2.5fr;
     }
-    #fixButton{
-        padding: 0.4rem;
-        font-size: 1.7rem;
-        transition: transform 0.1s ease-out;
-    }
-    #fixButton:hover{
-        transform: scale(1.2);
-    }
-    #fixButton:active{
-        transform: scale(1.1);
-        opacity: 50%;
-    }
-    #fixButton img{
-        height: 2.27rem;
+    #classTypeForm{
+        font-size: 1.4rem;
     }
     #verifyNoti{
         padding: 2.5rem 3rem;

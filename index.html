@@ -109,6 +109,7 @@
         <section id="cell">
             <div id="cellHeader">
                 <h4>ตารางเรียน</h4>
+                <h4 id="dateCellHeader"></h4>
             </div>
             <div id="classCell">
                 <div class="cell-block cell-time">ชั่วโมงที่</div>
@@ -150,10 +151,28 @@
                 <div class="cell-block cell-class"> <p id="class10-1">XXX</p><p id="class10-2">XXX</p><p id="class10-3">XX</p> </div>
                 <div class="cell-block cell-class"> <p id="class11-1">XXX</p><p id="class11-2">XXX</p><p id="class11-3">XX</p> </div>
             </div>
+            <form id="classTypeForm">
+                <p>ตารางเรียนแบบที่: </p>
+                <div>
+                    <label for="typeOne">1</label>
+                    <input type="radio" class="class-type" id="typeOne" name="classType" value="1">
+                </div>
+                <div>
+                    <label for="typeTwo">2</label>
+                    <input type="radio" class="class-type" id="typeTwo" name="classType" value="2">
+                </div>
+                <div>
+                    <label for="typeThree">3</label>
+                    <input type="radio" class="class-type" id="typeThree" name="classType" value="3">
+                </div>
+            </form>
             <div>
-                <button id="fixButton">
+                <button class="button" id="fixButton">
                     <img src="./assets/pictures/pencil.webp" alt="">
                     แก้ไข
+                </button>
+                <button class="button" id="submitFix">
+                    ยืนยัน
                 </button>
             </div>
         </section>
