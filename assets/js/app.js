@@ -359,7 +359,7 @@ dates.forEach((date) =>
         if(!date.classList.contains("out-month") && !date.classList.contains("block-day")) {   
             cell.style.display = "block";
             dateCount = date.textContent;
-            currDate = `${yearCount-543}-${monthCount}-${dateCount}`;
+            currDate = `${yearCount-543}-${monthCount+1}-${dateCount}`;
         
             if(await checkDateClass(currDate)) {
                 loadedClass = await loadDateClass(currDate);
