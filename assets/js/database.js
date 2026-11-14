@@ -79,7 +79,6 @@ export const logOut = async () => {
 
     if(error) {
         console.error("Error", error);
-        return[];
     } else {
         window.location.reload();
     };
@@ -90,11 +89,7 @@ export const checkUsernameDb = async (username) => {
         p_username: username.value,
     });
 
-    if(data) {
-        return false;
-    } else {
-        return true;
-    };
+    return !data
 };
 
 export const checkEmailDb = async (email) => {
@@ -110,12 +105,13 @@ export const checkEmailDb = async (email) => {
 };
 
 export const checkTeacherDb = async () => {
-    const { data, error } = await db.rpc("check_teacher");
+    const { data, error } = await db.from("profiles")
+        .select("teacher");
 
     if(error) {
         console.error("Error", error);
     } else {
-        return(data);
+        return data[0].teacher;
     };
 };
 
@@ -127,8 +123,7 @@ export const verifyTeacherDb = async (password) => {
     if(error) {
         console.error("Error", error);
     } else {
-        console.log(data)
-        return(data);
+        return data;
     };
 };
 
@@ -148,12 +143,83 @@ export const classNormal = async (term) => {
     const { data, error } = await db.from("classNormalDays")
         .select("class")
         .eq("term", term)
-        .order("id", {ascending: true})
+        .order("id", {ascending: true});
 
     if(error) {
         console.error("Error", error);
-        return;
+    } else {
+        return data;
     };
+};
 
-    return(data);
+export const loadClassType = async () => {
+    const { data, error } = await db.from("classTypes")
+        .select("hour1, hour2, hour3, hour4, hour5, hour6, hour7, hour8, hour9, hour10, hour11");
+    
+    if(error) {
+        console.error("Error", error);
+    } else {
+        return data;
+    };
+};
+
+export const checkDateClass = async (date) => {
+    const { data, error } = await db.from("classChanges")
+        .select("*")
+        .eq("date", date)
+        .maybeSingle();
+        
+        if(error) {
+            console.error("Error", error);
+        } else {
+            return !!data;
+        };
+    };
+    
+export const loadDateClass = async (date) => {
+    const { data, error } = await db.from("classChanges")
+        .select("*")
+        .eq("date", date)
+        .maybeSingle();
+
+    if(error) {
+        console.error("Error", error);
+    } else {
+        return data;
+    };
+};
+
+export const saveClass = async (date, classType, subject) => {
+    const { data, error } = await db.from("classChanges")
+        .insert({date: date, classType: classType, class: subject});
+
+    if(error) {
+        console.error("Error", error);
+    } else {
+        return data;
+    };
+};
+
+export const updateClass = async (date, classType, subject) => {
+    const { data, error } = await db.from("classChanges")
+        .update({classType: classType, class: subject})
+        .eq("date", date);
+
+    if(error) {
+        console.error("Error", error);
+    } else {
+        return data;
+    };
+};
+
+export const daleteClass = async (date) => {
+    const { data, error } = await db.from("classChanges")
+        .delete()
+        .eq("date", date);
+
+    if(error) {
+        console.error("Error", error);
+    } else {
+        return data;
+    };
 };

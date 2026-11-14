@@ -15,8 +15,8 @@ const otpAgain = document.getElementById("otpAgain");
 
 const inputs = document.querySelectorAll("#signUp input");
 
-const main = document.querySelector("main");
 const header = document.querySelector("header");
+const main = document.querySelector("main");
 
 const headerHeight = () => {
     const height = header.offsetHeight;
@@ -141,7 +141,7 @@ submit.addEventListener("click", async (e) => {
             formSignUp.style.display = "none"
             verifyPage.style.display = "flex";
         };
-        main.style.animation = "";
+        main.style.removeProperty("animation");
     };
 });
 

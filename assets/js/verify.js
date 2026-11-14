@@ -55,7 +55,7 @@ submit.addEventListener("click", async (e) => {
         } else {
             window.location.href = "";
         };
-        main.style.animation = "";
+        main.style.removeProperty("animation");
     };
 });
 

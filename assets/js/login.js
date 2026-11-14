@@ -115,7 +115,7 @@ submit.addEventListener("click", async (e) => {
             errorPassword.style.display = "block";
             password.classList.add("error-input");
         };
-        main.style.animation = "";
+        main.style.removeProperty("animation");
     };
 });
 
@@ -145,7 +145,7 @@ submitEmail.addEventListener("click", async (e) => {
             verifyEmail.style.display = "none";
             verifyOtp.style.display = "block";
         };
-        main.style.animation = "";
+        main.style.removeProperty("animation");
     };
 });
 
@@ -155,7 +155,7 @@ submitOtp.addEventListener("click", async (e) => {
     if(await verifyLogIn(emailOtp, otpSum())) {
         window.location.href = "../";
     };
-    main.style.animation = "";
+    main.style.removeProperty("animation");
 });
 
 otps.forEach((otp, index) => {

@@ -243,6 +243,9 @@ nav div{
     text-align: center;
     outline: 0.1rem solid var(--first_color);
     background-color: var(--second_color);
+    transition:
+        background-color 0.15s ease-out,
+        box-shadow 0.08s ease-out;
 }
 
 .cell-hour{
@@ -252,12 +255,6 @@ nav div{
 
 .cell-time{
     font-size: 0.25rem;
-}
-
-.cell-class{
-    transition:
-        background-color 0.15s ease-out,
-        box-shadow 0.08s ease-out;
 }
 
 .class-type{
@@ -392,7 +389,7 @@ nav div{
 }
 
 #classTypeForm{
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     margin: 1.3em 0 0;
@@ -460,6 +457,24 @@ nav div{
     font-family: inherit;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes loading{
+    0%{
+        pointer-events: none;
+        cursor: wait;
+        opacity: 50%;
+    }
+    70%{
+        pointer-events: none;
+        cursor: wait;
+        opacity: 60%;
+    }
+    100%{
+        pointer-events: none;
+        cursor: wait;
+        opacity: 70%;
+    }
 }
 
 @keyframes push-noti{

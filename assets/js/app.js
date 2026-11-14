@@ -1,21 +1,37 @@
-import { logOut, authChange, classNormal, checkTeacherDb } from "./database.js";
+import {
+    logOut,
+    checkTeacherDb,
+    authChange,
+    loadClassType,
+    classNormal,
+    checkDateClass,
+    loadDateClass,
+    saveClass,
+    updateClass,
+    daleteClass
+} from "./database.js";
 
 const signUpNav = document.getElementById("signUpNav");
 const logInNav = document.getElementById("logInNav");
 const logOutNav = document.getElementById("logOutNav");
 const userNav = document.getElementById("userNav");
 const statusNav = document.getElementById("statusNav");
+
 const year = document.getElementById("yearValue");
 const month = document.getElementById("monthValue");
 const yearBack = document.getElementById("yearBack");
 const yearGo = document.getElementById("yearGo");
 const monthBack = document.getElementById("monthBack");
 const monthGo = document.getElementById("monthGo");
+
 const cell = document.getElementById("cell");
 const dateCellHeader = document.getElementById("dateCellHeader");
 const classDay = document.getElementById("classDay");
+
+const classTypeForm = document.getElementById("classTypeForm");
 const fixButton = document.getElementById("fixButton");
 const submitFix = document.getElementById("submitFix");
+
 const overlay = document.getElementById("overlay");
 const verifyNoti = document.getElementById("verifyNoti");
 const clossNoti = document.getElementById("clossNoti");
@@ -27,8 +43,10 @@ const tue = document.querySelectorAll(".tue");
 const wed = document.querySelectorAll(".wed");
 const thu = document.querySelectorAll(".thu");
 const fri = document.querySelectorAll(".fri");
+const formClassTypes = document.querySelectorAll(".class-type");
 
 const header = document.querySelector("header");
+const main = document.querySelector("main");
 
 const cellTimes = Array.from({length:11}, (_, i) => document.getElementById(`cellTime${i+1}`));
 
@@ -66,7 +84,7 @@ const checkUser = async (session) => {
             statusNav.title = "ยืนยันสถานะครูแล้ว";
             if(!fixMode) {
                 fixButton.style.display = "flex";
-            }
+            };
         } else {
             verifyNav.style.display = "block";
             statusNav.src = "./assets/pictures/cross.webp";
@@ -190,27 +208,16 @@ const termChange = async (mv, yv) => {
         result = await classNormal(term);
         console.log("load", term)
     };
-}
+};
 
-let yearCount = new Date().getFullYear()+543;
-year.textContent = yearCount;
-
-let monthNames = [
-    "มกราคม",
-    "กุมภาพันธ์",
-    "มีนาคม",
-    "เมษายน",
-    "พฤษภาคม",
-    "มิถุนายน",
-    "กรกฎาคม",
-    "สิงหาคม",
-    "กันยายน",
-    "ตุลาคม",
-    "พฤศจิกายน",
-    "ธันวาคม"
-];
-let monthCount = new Date().getMonth();
-month.textContent = monthNames[monthCount];
+const clickFixCellClasses = target => {
+    for(const item of cellClasses) {
+        item.style.backgroundColor = "var(--soft_soft_important)";
+        item.style.boxShadow = "none";
+    };
+    target.style.backgroundColor = "var(--soft_important)";
+    target.style.boxShadow = "0 0 1.5rem 0.5rem var(--soft_important)";
+};
 
 window.addEventListener("reload", headerHeight);
 window.addEventListener("resize", headerHeight);
@@ -276,22 +283,62 @@ monthGo.addEventListener("click", async () => {
 
 fixButton.addEventListener("click", async () => {
     if(await checkTeacherDb()) {
+        for(const date of dates) {
+            date.inert = true;
+        };
+
         fixMode = true;
         fixButton.style.display = "none";
         submitFix.style.display = "flex";
+        classTypeForm.style.display = "flex";
 
-        for(const cellClass of cellClasses) {
-            cellClass.style.cursor = "pointer"
-            cellClass.style.backgroundColor = "var(--soft_soft_important)"
-            cellClass.addEventListener("click", () => {
-                for(const cellClass of cellClasses) {
-                    cellClass.style.backgroundColor = "var(--soft_soft_important)";
-                    cellClass.style.boxShadow = "none";
-                };
-                cellClass.style.backgroundColor = "var(--soft_important)";
-                cellClass.style.boxShadow = "0 0 1.5rem 0.5rem var(--soft_important)";
-            });
+        for(const [i, cellClass] of cellClasses.entries()) {
+            clickCellClasses[i] = () => clickFixCellClasses(cellClass);
+            cellClass.style.cursor = "pointer";
+            cellClass.style.backgroundColor = "var(--soft_soft_important)";
+            cellClass.addEventListener("click", clickCellClasses[i]);
         };
+    } else {
+        overlay.style.display = "block";
+        verifyNoti.style.animation = "none";
+        verifyNoti.offsetHeight;
+        verifyNoti.style.animation = "push-noti 0.2s ease-out forwards";
+    };
+});
+
+submitFix.addEventListener("click", async () => {
+    if(await checkTeacherDb()) {
+        main.style.animation = "2s loading linear infinite";
+        for(const date of dates) {
+            date.inert = false;
+        };
+
+        const selectedType = Array.from(classTypeForm).find(item => item.checked);
+        fixMode = false;
+        fixButton.style.display = "flex";
+        submitFix.style.display = "none";
+        classTypeForm.style.display = "none";
+        
+        for(const [i, cellClass] of cellClasses.entries()) {
+            cellClass.style.removeProperty("cursor");
+            cellClass.style.removeProperty("background-color");
+            cellClass.style.removeProperty("box-shadow");
+            cellClass.removeEventListener("click", clickCellClasses[i]);
+        };
+
+        if(await checkDateClass(currDate)) {
+            if(selectedType.value!=1 && selectedType.value!=loadedClass?.classType) {
+                await updateClass(currDate, selectedType.value, null);
+            } else if(selectedType.value==1) {
+                await daleteClass(currDate);
+            };
+        } else {
+            if(selectedType.value!=1) {
+                await saveClass(currDate, selectedType.value, null);
+            };
+        };
+
+        main.style.removeProperty("animation");
     } else {
         overlay.style.display = "block";
         verifyNoti.style.animation = "none";
@@ -305,12 +352,24 @@ clossNoti.addEventListener("click", () => {
     verifyNoti.style.animation = "none";
     verifyNoti.offsetHeight;
     verifyNoti.style.animation = "out-noti 0.2s ease-in forwards";
-})
+});
 
 dates.forEach((date) =>
-    date.addEventListener("click", () => {
+    date.addEventListener("click", async () => {
         if(!date.classList.contains("out-month") && !date.classList.contains("block-day")) {   
             cell.style.display = "block";
+            dateCount = date.textContent;
+            currDate = `${yearCount-543}-${monthCount}-${dateCount}`;
+        
+            if(await checkDateClass(currDate)) {
+                loadedClass = await loadDateClass(currDate);
+                formClassTypes[loadedClass.classType-1].checked = true;
+            } else {
+                loadedClass = null;
+                formClassTypes[0].checked = true;
+            };
+            
+            formClassTypes.forEach((formClassType) => formClassType.dispatchEvent(new Event("change")));
         };
     })
 );
@@ -318,7 +377,7 @@ dates.forEach((date) =>
 mon.forEach((monJr) =>
     monJr.addEventListener("click", async () => {
         if(!monJr.classList.contains("out-month") && !monJr.classList.contains("block-day")) {
-            dateCellHeader.innerHTML = `&nbsp;จ.&nbsp;${monJr.textContent}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
+            dateCellHeader.innerHTML = `&nbsp;จ.&nbsp;${dateCount}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
             classLoad("จันทร์", 0);
         };
     })
@@ -326,7 +385,7 @@ mon.forEach((monJr) =>
 tue.forEach((tueJr) =>
     tueJr.addEventListener("click", async () => {
         if(!tueJr.classList.contains("out-month") && !tueJr.classList.contains("block-day")) {
-            dateCellHeader.innerHTML = `&nbsp;อ.&nbsp;${tueJr.textContent}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
+            dateCellHeader.innerHTML = `&nbsp;อ.&nbsp;${dateCount}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
             classLoad("อังคาร", 1);
         };
     })
@@ -334,7 +393,7 @@ tue.forEach((tueJr) =>
 wed.forEach((wedJr) =>
     wedJr.addEventListener("click", async () => {
         if(!wedJr.classList.contains("out-month") && !wedJr.classList.contains("block-day")) {
-            dateCellHeader.innerHTML = `&nbsp;พ.&nbsp;${wedJr.textContent}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
+            dateCellHeader.innerHTML = `&nbsp;พ.&nbsp;${dateCount}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
             classLoad("พุธ", 2);
         };
     })
@@ -342,7 +401,7 @@ wed.forEach((wedJr) =>
 thu.forEach((thuJr) =>
     thuJr.addEventListener("click", async () => {
         if(!thuJr.classList.contains("out-month") && !thuJr.classList.contains("block-day")) {
-            dateCellHeader.innerHTML = `&nbsp;พฤ.&nbsp;${thuJr.textContent}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
+            dateCellHeader.innerHTML = `&nbsp;พฤ.&nbsp;${dateCount}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
             classLoad("พฤหัสฯ", 3);
         };
     })
@@ -350,15 +409,50 @@ thu.forEach((thuJr) =>
 fri.forEach((friJr) =>
     friJr.addEventListener("click", async () => {
         if(!friJr.classList.contains("out-month") && !friJr.classList.contains("block-day")) {
-            dateCellHeader.innerHTML = `&nbsp;ศ.&nbsp;${friJr.textContent}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
+            dateCellHeader.innerHTML = `&nbsp;ศ.&nbsp;${dateCount}&nbsp;${monthNames[monthCount]}&nbsp;${yearCount}`;
             classLoad("ศุกร์", 4);
         };
     })
 );
 
+formClassTypes.forEach((formClassType) =>
+    formClassType.addEventListener("change", async () => {
+        if(formClassType.checked) {
+            for(const [i, cellTime] of cellTimes.entries()) {
+                cellTime.textContent = classType[`${formClassType.value-1}`][`hour${i+1}`];
+            };
+        };
+    })
+);
+
+const classType = await loadClassType();
+
+let yearCount = new Date().getFullYear()+543;
+let monthNames = [
+    "มกราคม",
+    "กุมภาพันธ์",
+    "มีนาคม",
+    "เมษายน",
+    "พฤษภาคม",
+    "มิถุนายน",
+    "กรกฎาคม",
+    "สิงหาคม",
+    "กันยายน",
+    "ตุลาคม",
+    "พฤศจิกายน",
+    "ธันวาคม"
+];
+let monthCount = new Date().getMonth();
+let dateCount;
+let currDate;
 let term = termCheck(monthCount, yearCount);
 let result = await classNormal(term);
 let fixMode = false;
+let loadedClass;
+let clickCellClasses = Array.from({length:11});
+
+year.textContent = yearCount;
+month.textContent = monthNames[monthCount];
 
 headerHeight();
 calendarCal(monthCount, yearCount);
